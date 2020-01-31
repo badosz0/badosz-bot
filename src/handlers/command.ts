@@ -9,14 +9,15 @@ export async function run (message: Message) : Promise<void>
     
     let command: Command | undefined;
     
-    await core.plugins.forEach(plugin => {
-      const command_match = plugin.commands.find((plugin_command: Command) =>
-        plugin_command.trigger == command_name.toLowerCase()
-      );
-      if (command_match) 
-      {
-        command = command_match;
-      }
+    await core.plugins.forEach(plugin => 
+    {
+    	const command_match = plugin.commands.find((plugin_command: Command) =>
+        	plugin_command.trigger == command_name.toLowerCase()
+      	);
+      	if (command_match) 
+      	{
+        	command = command_match;
+      	}
   
     })
   
