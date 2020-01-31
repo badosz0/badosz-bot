@@ -6,6 +6,5 @@ const commands = require('fs')
 export const data = {
 	name: 'Basic',
 	id: 'basic',
-  	author: 'Badosz#0001',
   	commands: commands,
 }
