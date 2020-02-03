@@ -3,7 +3,7 @@ import { Json_settings } from "./types";
 import Events_handler from "./handlers/events";
 import Plugin_handler from "./handlers/plugins";
 
-const prefixes = require("../config/prefixes.json")
+const prefixes = require("../config/prefixes.json");
 const tokens = require("../config/tokens.json");
 
 export class Bot extends Client 
