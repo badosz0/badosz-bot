@@ -1,6 +1,9 @@
 import { Message } from "discord.js"
 import { core } from "../index"
-import { Command } from "structures/command";
+import { Command } from "../structures/command";
+import { Embed } from "../structures/embed";
+
+const whitelist = require("./whitelist")
 
 export async function run (message: Message) : Promise<void>
 {  
@@ -22,6 +25,17 @@ export async function run (message: Message) : Promise<void>
     })
   
     if(!command) return;
+
+    if (!whitelist.includes(message.guild.id))
+    {
+        return new Embed({
+            object: message,
+            message: 
+            `This server is \`whitelisted\`
+
+            Visit this [discord server](https://discord.gg/ZwPfRfp) for more details.`
+        }).send()
+    }
 
     command.run(message);
 }
