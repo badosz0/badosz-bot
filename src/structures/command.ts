@@ -1,6 +1,6 @@
 import { Message } from "discord.js";
 
-export type Trigger = string
+export type Trigger = string;
 
 export interface Command_output
 {
