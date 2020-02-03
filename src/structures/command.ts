@@ -1,4 +1,5 @@
 import { Message } from "discord.js";
+import { Embed } from "./embed";
 
 export type Trigger = string;
 
@@ -38,7 +39,10 @@ export class Text_command extends Command
     }
 
     public run(message: Message) : void {
-        message.channel.send(this.output({message}));
+        new Embed({
+            object: message,
+            message: this.output({message})
+        }).send()
     }
 }
 
