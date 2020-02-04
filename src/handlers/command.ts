@@ -37,5 +37,14 @@ export async function run (message: Message) : Promise<void>
         }).send()
     }
 
-    command.run(message);
+    if (command.developer && message.author.id != core.developer)
+    {
+        return new Embed({
+            object: message,
+            message: `This command is for developers only.`
+        }).send()
+    }
+
+
+    command.run(message, args);
 }

@@ -12,6 +12,7 @@ export interface Command_output
 export interface Command_options
 {
     trigger: Trigger;
+    developer?: boolean;
     output: ({message}: Command_output) => any;
 }
 
@@ -20,28 +21,30 @@ export abstract class Command
 {
     public trigger: Trigger;
     public output: any;
+    public developer: boolean;
 
-    constructor ({trigger, output}: Command_options)
+    constructor ({trigger, output, developer = false}: Command_options)
     {
         this.trigger = trigger;
         this.output = output;
+        this.developer = developer;
     }
 
-    abstract run(message: Message): void;
+    abstract run(message: Message, args: string[]): void;
 
 }
 
 export class Text_command extends Command
 {
-    constructor({trigger, output}: Command_options)
+    constructor({trigger, output, developer = false}: Command_options)
     {
-        super({trigger, output});
+        super({trigger, output, developer});
     }
 
-    public run(message: Message) : void {
+    public run(message: Message, args: string[]) : void {
         new Embed({
             object: message,
-            message: this.output({message})
+            message: this.output({message, args})
         }).send()
     }
 }

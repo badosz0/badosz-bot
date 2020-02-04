@@ -5,6 +5,7 @@ import Plugin_handler from "./handlers/plugins";
 
 const prefixes = require("../config/prefixes.json");
 const tokens = require("../config/tokens.json");
+const roles = require("../config/roles.json");
 
 export class Bot extends Client 
 {
@@ -15,6 +16,7 @@ export class Bot extends Client
     
     public prefix: string;
     public plugins: any[] = [];
+    public developer: string;
     
     constructor (settings: Json_settings)
     {
@@ -26,6 +28,7 @@ export class Bot extends Client
         };
 
         this.prefix = settings.prefix;
+        this.developer = settings.developer;
         
         this.login(settings.token);
     }
@@ -34,6 +37,7 @@ export class Bot extends Client
 export const core = new Bot (
     {
         prefix : prefixes.main,
+        developer : roles.developer,
         token : tokens.discord,
         disabledEvents: [
           'TYPING_START',
