@@ -31,7 +31,7 @@ export async function run (message: Message) : Promise<void>
         return new Embed({
             object: message,
             message: 
-            `This server is \`whitelisted\`
+            `This server is \`not whitelisted\`
 
             Visit this [discord server](https://discord.gg/ZwPfRfp) for more details.`
         }).send()
