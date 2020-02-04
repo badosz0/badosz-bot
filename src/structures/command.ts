@@ -6,6 +6,7 @@ export type Trigger = string;
 export interface Command_output
 {
     message: Message;
+    args? : string[];
 }
 
 
@@ -41,7 +42,7 @@ export class Text_command extends Command
         super({trigger, output, developer});
     }
 
-    public run(message: Message, args: string[]) : void {
+    public run(message: Message, args: string[] = []) : void {
         new Embed({
             object: message,
             message: this.output({message, args})

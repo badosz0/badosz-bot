@@ -8,7 +8,7 @@ export default class Plugin_handler
         bot.plugins = [];
           
         const plugins = fs.readdirSync(`${__dirname}/../plugins`);
-        
+
         for (const plugin_path of plugins) 
         {
             const plugin = require(`../plugins/${plugin_path}`).data;
