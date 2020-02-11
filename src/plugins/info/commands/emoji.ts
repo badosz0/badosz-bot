@@ -48,8 +48,6 @@ export = new Image_command ({
         guild = emoji ? emoji.guild.name : guild
         id = discord_emoji.id ? discord_emoji.id : id
 
-        console.log(name, guild, id, url)
-
         return {
             text: `\`Guild:\` ${guild}\n\`ID:\` ${id}\n\`Url:\` [[link]](${url})`,
             thumbnail: url
