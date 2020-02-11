@@ -1,6 +1,5 @@
 import { Image_command, Command_output } from "../../../structures/command";
 import { core } from "../../../index";
-import { get_user } from "../../../utils/user";
 import { Util } from "discord.js";
 
 const twemoji = require("twemoji")
