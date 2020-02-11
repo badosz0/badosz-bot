@@ -26,6 +26,8 @@ export async function run (message: Message) : Promise<void>
   
     if(!command) return;
 
+    if (command.limit_to.length > 0 && !command.limit_to.includes(message.guild.id)) return
+
     if (!whitelist.includes(message.guild.id))
     {
         return new Embed({

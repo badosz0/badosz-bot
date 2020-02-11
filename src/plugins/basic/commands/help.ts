@@ -9,7 +9,7 @@ export = new Text_command ({
 
         core.plugins.forEach(plugin => {
 
-            if (plugin.id == "dev" && message.author.id != core.developer) return
+            if ((plugin.id == "dev" && message.author.id != core.developer) || (plugin.limit_to && !plugin.limit_to.includes(message.guild.id))) return
 
             help += `**${plugin.name}**\n`
             help += plugin.commands.map((

@@ -14,6 +14,7 @@ export interface Command_options
 {
     trigger: Trigger;
     developer?: boolean;
+    limit_to?: string[];
     output: ({message}: Command_output) => any;
 }
 
@@ -23,12 +24,14 @@ export abstract class Command
     public trigger: Trigger;
     public output: any;
     public developer: boolean;
+    public limit_to: string[];
 
-    constructor ({trigger, output, developer = false}: Command_options)
+    constructor ({trigger, output, developer = false, limit_to = []}: Command_options)
     {
         this.trigger = trigger;
         this.output = output;
         this.developer = developer;
+        this.limit_to = limit_to;
     }
 
     abstract run(message: Message, args: string[]): void;
@@ -37,9 +40,9 @@ export abstract class Command
 
 export class Text_command extends Command
 {
-    constructor({trigger, output, developer = false}: Command_options)
+    constructor({trigger, output, developer = false, limit_to = []}: Command_options)
     {
-        super({trigger, output, developer});
+        super({trigger, output, developer, limit_to});
     }
 
     public run(message: Message, args: string[] = []) : void 
@@ -53,9 +56,9 @@ export class Text_command extends Command
 
 export class Image_command extends Command
 {
-    constructor({trigger, output, developer = false}: Command_options)
+    constructor({trigger, output, developer = false, limit_to = []}: Command_options)
     {
-        super({trigger, output, developer});
+        super({trigger, output, developer, limit_to});
     }
 
     public async run(message: Message, args: string[] = []) : Promise<void> 
