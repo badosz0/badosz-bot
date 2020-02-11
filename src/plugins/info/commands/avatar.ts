@@ -1,5 +1,4 @@
 import { Image_command, Command_output } from "../../../structures/command";
-import { core } from "../../../index";
 import { get_user } from "../../../utils/user";
 
 export = new Image_command ({

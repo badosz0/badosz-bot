@@ -65,7 +65,8 @@ export class Image_command extends Command
         new Embed({
             object: message,
             message: output.text,
-            image: output.image
+            image: output.image ? output.image : "",
+            thumbnail: output.thumbnail ? output.thumbnail : ""
         }).send()
     }
 }
