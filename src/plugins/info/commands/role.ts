@@ -13,8 +13,6 @@ export = new Image_command ({
             return {text: "Provide a valid role."}
         }
         
-        console.log(role)
-
         return {
             text: `\`Name:\` ${role.name}\n` +
                   `\`ID:\` ${role.id}\n` +
