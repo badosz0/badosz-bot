@@ -4,6 +4,7 @@ import { Command } from "../structures/command";
 import { Embed } from "../structures/embed";
 
 const whitelist = require("./whitelist")
+const blacklist = require("../../config/blacklist.json")
 
 export async function run (message: Message) : Promise<void>
 {  
@@ -47,6 +48,13 @@ export async function run (message: Message) : Promise<void>
         }).send()
     }
 
+    if (blacklist.includes(message.author.id))
+    {
+        return new Embed({
+            object: message,
+            message: `Sorry, you are permanently banned from using this bot.\n [[Appeal Here]](https://www.youtube.com/watch?v=dQw4w9WgXcQ)`
+        }).send()
+    }
 
     command.run(message, args);
 }
