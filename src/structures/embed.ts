@@ -29,6 +29,7 @@ export class Embed
             .setDescription(this.message)
             .setImage(this.image)
             .setThumbnail(this.thumbnail)
+            .setColor(0x36393f)
             
         this.object.channel.send("", { embed })
     };
