@@ -36,7 +36,7 @@ export class Bot extends Client
 
 export const core = new Bot (
     {
-        prefix : prefixes.main,
+        prefix : (process.argv[2] == "beta" ? prefixes.beta : prefixes.main),
         developer : roles.developer,
         token : tokens.discord,
         disabledEvents: [
