@@ -5,7 +5,7 @@ import { Message } from "discord.js";
 function by_status(message: Message, status: string, total: number) : string
 {
     const count =  message.guild.members.filter(m => m.presence.status == status && !m.user.bot).size
-    return `\`${Math.floor(count/total*100)}%\` [ ${count} ]`
+    return `\`${Math.round(count/total*100)}%\` [ ${count} ]`
 }
 
 function by_game(message: Message, games: string[], total: number) : string
@@ -15,13 +15,13 @@ function by_game(message: Message, games: string[], total: number) : string
     {
         count += message.guild.members.filter(m => m.presence.game && m.presence.game.name == game && !m.user.bot).size
     })
-    return `\`${Math.floor(count/total*100)}%\` [ ${count} ]`
+    return `\`${Math.round(count/total*100)}%\` [ ${count} ]`
 }
 
 function nothing(message: Message, total: number) : string
 {
     const count = message.guild.members.filter(m => !m.presence.game && !m.user.bot).size
-    return `\`${Math.floor(count/total*100)}%\` [ ${count} ]`
+    return `\`${Math.round(count/total*100)}%\` [ ${count} ]`
 }
 
 export = new Text_command ({
@@ -36,7 +36,7 @@ export = new Text_command ({
         `<:dcDnd:495281269609857024> ${by_status(message, "dnd", total_members)} Dnd\n` +
         `<:dcOffline:495281269379432449> ${by_status(message, "offline", total_members)} Offline\n\n` +
 
-        `:keyboard: ${by_game(message, ["JetBrains IDE", "Atom Editor", "Visual Studio Code"], total_members)} Programming\n` +
+        `:keyboard: ${by_game(message, ["Eclipse IDE", "Sublime Text","PyCharm Professional", "Atom", "Atom Editor", "Visual Studio Code"], total_members)} Programming\n` +
         `:musical_note: ${by_game(message, ["Spotify"], total_members)} Listening to Spotify\n` +
         `:sleeping_accommodation: ${nothing(message, total_members)} Doing Nothing`
 
