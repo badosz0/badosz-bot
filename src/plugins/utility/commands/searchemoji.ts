@@ -19,7 +19,7 @@ export = new Text_command ({
             return "Didn't find any emoji with that name."
         }
 
-        let list = `Found \`${emojis.size}\` emoji${emojis.size > 1 ? "s" : ""}\n\n`
+        let list = `Found [\`${emojis.size}\`](https://badosz.com/emoji-finder?emoji=${name}) emoji${emojis.size > 1 ? "s" : ""}\n\n`
         
         emojis.forEach(emoji => {
             if (list.length > 1800) return
