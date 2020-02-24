@@ -36,7 +36,7 @@ export = new Text_command ({
         `<:dcDnd:495281269609857024> ${by_status(message, "dnd", total_members)} Dnd\n` +
         `<:dcOffline:495281269379432449> ${by_status(message, "offline", total_members)} Offline\n\n` +
 
-        `:keyboard: ${by_game(message, ["Eclipse IDE", "Sublime Text","PyCharm Professional", "Atom", "Atom Editor", "Visual Studio Code"], total_members)} Programming\n` +
+        `:keyboard: ${by_game(message, ["Eclipse IDE", "WebStorm", "IntelliJ IDEA Ultimate", "PhpStorm", "Rider", "RubyMine", "Clion", "PyCharm", "IntelliJ IDEA", "JetBrains IDE", "GoLand", "Sublime Text", "PyCharm Professional", "Atom", "Atom Editor", "Visual Studio Code", "Visual Studio", "Android Studio"], total_members)} Programming\n` +
         `:musical_note: ${by_game(message, ["Spotify"], total_members)} Listening to Spotify\n` +
         `:sleeping_accommodation: ${nothing(message, total_members)} Doing Nothing`
 
