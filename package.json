@@ -10,9 +10,17 @@
   "license": "ISC",
   "dependencies": {
     "@types/node": "^13.5.3",
+    "canvas": "^2.6.1",
+    "chart.js": "^2.9.3",
+    "chartist-to-image": "^1.2.1",
     "discord.js": "^11.5.1",
     "express": "^4.17.1",
+    "node-chartist": "^1.0.5",
     "node-fetch": "^2.6.0",
+    "node-pre-gyp": "^0.14.0",
     "twemoji": "^12.1.5"
+  },
+  "devDependencies": {
+    "google-charts": "^2.0.0"
   }
 }
