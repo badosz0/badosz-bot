@@ -10,7 +10,7 @@ const ports = require("../config/ports.json");
 
 export class Bot extends Client 
 {
-    private handlers: {
+    public handlers: {
         events : Events_handler;
         plugins : Plugin_handler;
     };

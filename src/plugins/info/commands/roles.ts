@@ -10,6 +10,6 @@ export = new Text_command ({
                                          .map((role, i) => `\`${i + 1}.\` ${role}`)
                                          .join("\n")
 
-        return `Roles in \`${message.guild.name}\`\n\n${roles}`
+        return `Roles in **${message.guild.name}**\n\n${roles}`
     }
 })

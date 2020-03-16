@@ -27,14 +27,14 @@ export = new Image_command ({
         if (!server) server = message.guild
 
         return {
-            text: `\`Name:\` ${server.name}\n` +
-                  `\`ID:\` ${server.id}\n` +
-                  `\`Owner:\` ${server.owner.user.tag}\n` +
-                  `\`Members:\` ${server.members.size}\n` +
-                  `\`Region:\` ${regions[server.region]}\n` +
-                  `\`Text Channels:\` ${server.channels.filter(channel => channel.type == 'text').size}\n` +
-                  `\`Voice Channels:\` ${server.channels.filter(channel => channel.type == 'voice').size}\n` +
-                  `\`Created At:\` ${server.createdAt.toUTCString()}\n`,
+            text: `**Name:** ${server.name}\n` +
+                  `**ID:** ${server.id}\n` +
+                  `**Owner:** ${server.owner.user.tag}\n` +
+                  `**Members:** ${server.members.size}\n` +
+                  `**Region:** ${regions[server.region]}\n` +
+                  `**Text Channels:** ${server.channels.filter(channel => channel.type == 'text').size}\n` +
+                  `**Voice Channels:** ${server.channels.filter(channel => channel.type == 'voice').size}\n` +
+                  `**Created At:** ${server.createdAt.toUTCString()}\n`,
             thumbnail: server.icon ? server.iconURL : `https://dummyimage.com/128/7289DA/FFFFFF/&text=${encodeURIComponent(server.nameAcronym)}`
         }
     }

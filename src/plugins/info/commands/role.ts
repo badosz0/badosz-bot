@@ -14,14 +14,14 @@ export = new Image_command ({
         }
         
         return {
-            text: `\`Name:\` ${role.name}\n` +
-                  `\`ID:\` ${role.id}\n` +
-                  `\`Members:\` ${role.members.size}\n` +
-                  `\`Position:\` ${role.position}\n` +
-                  `\`Hoisted:\` ${role.hoist ? 'Yes' : 'No'}\n` +
-                  `\`External:\` ${role.managed ? 'Yes' : 'No'}\n` +
-                  `\`Mentionable:\` ${role.mentionable ? 'Yes' : 'No'}\n` +
-                  `\`Created At:\` ${role.createdAt.toUTCString()}\n`,
+            text: `**Name:** ${role.name}\n` +
+                  `**ID:** ${role.id}\n` +
+                  `**Members:** ${role.members.size}\n` +
+                  `**Position:** ${role.position}\n` +
+                  `**Hoisted:** ${role.hoist ? 'Yes' : 'No'}\n` +
+                  `**External:** ${role.managed ? 'Yes' : 'No'}\n` +
+                  `**Mentionable:** ${role.mentionable ? 'Yes' : 'No'}\n` +
+                  `**Created At:** ${role.createdAt.toUTCString()}\n`,
             thumbnail: `https://dummyimage.com/250/${role.hexColor.slice(1)}/&text=%20`
         }
     }

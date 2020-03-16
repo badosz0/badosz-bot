@@ -13,9 +13,9 @@ export = new Text_command ({
         const snowflake = SnowflakeUtil.deconstruct(args[0])
         
         return `**${args[0]}**\n` +
-               `\`Created at:\` ${new Date(snowflake.timestamp).toUTCString()}\n` +
-               `\`Worker ID:\` ${snowflake.workerID}\n` +
-               `\`Process ID:\` ${snowflake.processID}\n` +
-               `\`Increment:\` ${snowflake.increment}`
+               `**Created at:** ${new Date(snowflake.timestamp).toUTCString()}\n` +
+               `**Worker ID:** ${snowflake.workerID}\n` +
+               `**Process ID:** ${snowflake.processID}\n` +
+               `**Increment:** ${snowflake.increment}`
     }
 })
