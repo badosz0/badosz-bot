@@ -3,11 +3,12 @@ import { SnowflakeUtil } from "discord.js";
 
 export = new Text_command ({
     trigger : "snowflake",
+    usage: "<snowflake>",
     output : ({message, args = []}: Command_output) => 
     {
         if (!/^([0-9]{15,21})$/i.exec(args[0]))
         {
-            return "Provide a valid snowflake."
+            return false
         }
 
         const snowflake = SnowflakeUtil.deconstruct(args[0])

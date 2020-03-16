@@ -22,6 +22,7 @@ export = new Image_command ({
     trigger : "item",
     developer: false,
     limit_to: ["440553300203667477"],
+    usage: "<item name>",
     output : async ({message, args = []}: Command_output) => 
     {
         let items = await fetch(`https://raw.githubusercontent.com/egordorichev/BurningWiki/master/data/items/items.json`, {method: "Get"}).then((res: any)=> res.json())
@@ -31,7 +32,7 @@ export = new Image_command ({
         
         if (!item)
         {
-            return {text: "Provide a valid item."}
+            return false
         }
 
         let item_data = 

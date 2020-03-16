@@ -7,11 +7,12 @@ const twemoji = require("twemoji")
 export = new Image_command ({
     trigger : "emoji",
     developer: false,
+    usage: "<emoji>",
     output : async ({message, args = []}: Command_output) => 
     {
         if (!args[0])
         {
-            return {text: "Provide a valid emoji."}
+            return false
         }
 
         const discord_emoji = Util.parseEmoji(args[0])

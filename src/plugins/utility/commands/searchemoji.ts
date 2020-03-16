@@ -3,13 +3,14 @@ import { core } from "../../../index";
 
 export = new Text_command ({
     trigger : "searchemoji",
+    usage: "<emoji name>",
     output : ({message, args = []}: Command_output) => 
     {
         const name = args[0]
         
         if (!name)
         {
-            return 'Please provide an emoji name.'
+            return false
         }
 
         const emojis = core.emojis.filter(emoji => emoji.name.toLowerCase().includes(name.toLowerCase()))

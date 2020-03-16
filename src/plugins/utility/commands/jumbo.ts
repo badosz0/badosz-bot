@@ -5,6 +5,7 @@ const twemoji = require("twemoji")
 
 export = new Image_command ({
     trigger : "jumbo",
+    usage: "<emoji>",
     output : ({message, args = []}: Command_output) => 
     {
         try
@@ -34,7 +35,7 @@ export = new Image_command ({
         }
         catch (e)
         {
-            return {text: "Please provide a valid emoji."}
+            return false
         }
     }
 })

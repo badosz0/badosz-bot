@@ -3,6 +3,7 @@ import { Image_command, Command_output } from "../../../structures/command";
 export = new Image_command ({
     trigger : "server",
     developer: false,
+    usage: "[name/id]",
     output : async ({message, args = []}: Command_output) => 
     {
         const regions: {[region: string]: string} = {

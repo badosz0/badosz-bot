@@ -1,5 +1,4 @@
 import { Text_command, Command_output } from "../../../structures/command";
-import { core } from "../../../index";
 import { Message } from "discord.js";
 
 const programming = [

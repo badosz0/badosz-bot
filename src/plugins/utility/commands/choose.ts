@@ -4,6 +4,7 @@ import { single } from "../../../utils/array";
 
 export = new Text_command ({
     trigger : "choose",
+    usage: "<option>, <option>, [option]...",
     output : ({message, args = []}: Command_output) => 
     {
         let options = args.join(" ")

@@ -4,6 +4,7 @@ import { get_user } from "../../../utils/user";
 export = new Image_command ({
     trigger : "avatar",
     developer: false,
+    usage: "[mention/id]",
     output : async ({message, args = []}: Command_output) => 
     {
         const user = await get_user(message, args)

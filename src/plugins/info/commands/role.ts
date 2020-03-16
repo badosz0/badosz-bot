@@ -3,6 +3,7 @@ import { Image_command, Command_output } from "../../../structures/command";
 export = new Image_command ({
     trigger : "role",
     developer: false,
+    usage: "<mention/id/name>",
     output : async ({message, args = []}: Command_output) => 
     {
         let role = message.mentions.roles.first()
@@ -10,7 +11,7 @@ export = new Image_command ({
         if (!role) role = message.guild.roles.find(role => role.id === args.join(' '))
         if (!role) 
         {
-            return {text: "Provide a valid role."}
+            return false
         }
         
         return {
