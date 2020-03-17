@@ -1,6 +1,7 @@
 import { Message } from "discord.js";
 import { Embed } from "./embed";
 import { core } from "../index";
+import user = require("plugins/info/commands/user");
 
 export type Trigger = string;
 
@@ -18,6 +19,9 @@ export interface Command_options
     usage?: string;
     limit_to?: string[];
     output: ({message}: Command_output) => any;
+    user_perms?: string[];
+    bot_perms?: string[];
+
 }
 
 
@@ -28,14 +32,18 @@ export abstract class Command
     public developer: boolean;
     public usage: string;
     public limit_to: string[];
+    public user_perms: string[];
+    public bot_perms: string[];
 
-    constructor ({trigger, output, developer = false, limit_to = [], usage = ""}: Command_options)
+    constructor ({trigger, output, developer = false, limit_to = [], usage = "", user_perms = [], bot_perms = []}: Command_options)
     {
         this.trigger = trigger;
         this.output = output;
         this.developer = developer;
         this.limit_to = limit_to;
         this.usage = usage;
+        this.bot_perms = bot_perms;
+        this.user_perms = user_perms;
     }
 
     abstract run(message: Message, args: string[]): void;
@@ -43,9 +51,9 @@ export abstract class Command
 
 export class Text_command extends Command
 {
-    constructor({trigger, output, developer = false, limit_to = [], usage = ""}: Command_options)
+    constructor({trigger, output, developer = false, limit_to = [], usage = "", user_perms = [], bot_perms = []}: Command_options)
     {
-        super({trigger, output, developer, limit_to, usage});
+        super({trigger, output, developer, limit_to, usage, user_perms, bot_perms});
     }
 
     public run(message: Message, args: string[] = []) : void 
@@ -66,9 +74,9 @@ export class Text_command extends Command
 
 export class Image_command extends Command
 {
-    constructor({trigger, output, developer = false, limit_to = [], usage = ""}: Command_options)
+    constructor({trigger, output, developer = false, limit_to = [], usage = "", user_perms = [], bot_perms = []}: Command_options)
     {
-        super({trigger, output, developer, limit_to, usage});
+        super({trigger, output, developer, limit_to, usage, user_perms, bot_perms});
     }
 
     public async run(message: Message, args: string[] = []) : Promise<void> 
