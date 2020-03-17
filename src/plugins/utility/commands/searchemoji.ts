@@ -1,7 +1,7 @@
-import { Text_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { core } from "../../../index";
 
-export = new Text_command ({
+export = new Command ({
     trigger : "searchemoji",
     usage: "<emoji name>",
     output : ({message, args = []}: Command_output) => 
@@ -30,6 +30,8 @@ export = new Text_command ({
            
         })
         
-        return list
+        return {
+            text: list
+        }
     }
 })

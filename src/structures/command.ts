@@ -1,7 +1,6 @@
 import { Message } from "discord.js";
 import { Embed } from "./embed";
 import { core } from "../index";
-import user = require("plugins/info/commands/user");
 
 export type Trigger = string;
 
@@ -25,7 +24,7 @@ export interface Command_options
 }
 
 
-export abstract class Command
+export class Command
 {
     public trigger: Trigger;
     public output: any;
@@ -46,40 +45,7 @@ export abstract class Command
         this.user_perms = user_perms;
     }
 
-    abstract run(message: Message, args: string[]): void;
-}
-
-export class Text_command extends Command
-{
-    constructor({trigger, output, developer = false, limit_to = [], usage = "", user_perms = [], bot_perms = []}: Command_options)
-    {
-        super({trigger, output, developer, limit_to, usage, user_perms, bot_perms});
-    }
-
-    public run(message: Message, args: string[] = []) : void 
-    {
-        const output = this.output({message, args})
-
-        if (!output)
-        {
-            return show_usage(message, this)
-        }
-
-        new Embed({
-            object: message,
-            message: output
-        }).send()
-    }
-}
-
-export class Image_command extends Command
-{
-    constructor({trigger, output, developer = false, limit_to = [], usage = "", user_perms = [], bot_perms = []}: Command_options)
-    {
-        super({trigger, output, developer, limit_to, usage, user_perms, bot_perms});
-    }
-
-    public async run(message: Message, args: string[] = []) : Promise<void> 
+    public async run(message: Message, args: string[] = []): Promise<void> 
     {
         const output = await this.output({message, args})
         
@@ -92,15 +58,19 @@ export class Image_command extends Command
             object: message,
             message: output.text,
             image: output.image ? output.image : "",
-            thumbnail: output.thumbnail ? output.thumbnail : ""
+            thumbnail: output.thumbnail ? output.thumbnail : "",
+            color: output.error ? "#f44262" : undefined,
+            author: output.author
         }).send()
     }
+
 }
 
 function show_usage(message: Message, command: Command) : void
 {
     new Embed({
         object: message,
-        message: `**Valid Usage:**\n${core.prefix}${command.trigger} ${command.usage}`
+        message: `**Valid Usage:**\n${core.prefix}${command.trigger} ${command.usage}`,
+        color: "#f44262"
     }).send()
 }

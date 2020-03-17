@@ -1,10 +1,12 @@
-import { Text_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { core } from "../../../index";
 
-export = new Text_command ({
+export = new Command ({
     trigger : "ping",
     output : ({message}: Command_output) => 
     {
-        return `Api: **${Math.floor(core.ping)}ms.** | Bot: **${Date.now() - message.createdTimestamp}ms.**`
+        return {
+            text: `Api: **${Math.floor(core.ping)}ms.** | Bot: **${Date.now() - message.createdTimestamp}ms.**`
+        }
     }
 })

@@ -1,7 +1,7 @@
-import { Text_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { core } from "../../../index";
 
-export = new Text_command ({
+export = new Command ({
     trigger : "roles",
     output : ({message}: Command_output) => 
     {
@@ -10,6 +10,8 @@ export = new Text_command ({
                                          .map((role, i) => `\`${i + 1}.\` ${role}`)
                                          .join("\n")
 
-        return `Roles in **${message.guild.name}**\n\n${roles}`
+        return {
+            text: `Roles in **${message.guild.name}**\n\n${roles}`
+        }
     }
 })

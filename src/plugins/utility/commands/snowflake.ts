@@ -1,7 +1,7 @@
-import { Text_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { SnowflakeUtil } from "discord.js";
 
-export = new Text_command ({
+export = new Command ({
     trigger : "snowflake",
     usage: "<snowflake>",
     output : ({message, args = []}: Command_output) => 
@@ -13,10 +13,12 @@ export = new Text_command ({
 
         const snowflake = SnowflakeUtil.deconstruct(args[0])
         
-        return `**${args[0]}**\n` +
-               `**Created at:** ${new Date(snowflake.timestamp).toUTCString()}\n` +
-               `**Worker ID:** ${snowflake.workerID}\n` +
-               `**Process ID:** ${snowflake.processID}\n` +
-               `**Increment:** ${snowflake.increment}`
+        return {
+            text: `**${args[0]}**\n` +
+            `**Created at:** ${new Date(snowflake.timestamp).toUTCString()}\n` +
+            `**Worker ID:** ${snowflake.workerID}\n` +
+            `**Process ID:** ${snowflake.processID}\n` +
+            `**Increment:** ${snowflake.increment}`
+        }
     }
 })

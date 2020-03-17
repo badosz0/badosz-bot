@@ -1,4 +1,4 @@
-import { Text_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { Message } from "discord.js";
 
 const programming = [
@@ -44,7 +44,7 @@ function nothing(message: Message, total: number) : string
     return `\`${count}\` [ ${(count/total*100).toFixed(2)}% ]`
 }
 
-export = new Text_command ({
+export = new Command ({
     trigger : "members",
     output : ({message}: Command_output) => 
     {
@@ -60,6 +60,8 @@ export = new Text_command ({
         `:musical_note: ${by_game(message, ["Spotify"], total_members)} Listening to Spotify\n` +
         `:sleeping_accommodation: ${nothing(message, total_members)} Doing Nothing`
 
-        return members
+        return {
+            text: members
+        }
     }
 })

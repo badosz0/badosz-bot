@@ -6,6 +6,8 @@ export interface Embed_options
     message: string;
     image?: string;
     thumbnail?: string;
+    color?: string;
+    author?: string[];
 }
 
 export class Embed
@@ -14,13 +16,17 @@ export class Embed
     public message: string;
     public image: string;
     public thumbnail : string;
+    public color : string;
+    public author: string[];
 
-    constructor ({object, message, image = "", thumbnail = ""}: Embed_options)
+    constructor ({object, message, image = "", thumbnail = "", color = "#ffe680", author = ["", ""]}: Embed_options)
     {
         this.object = object;
         this.message = message;
         this.image = image;
         this.thumbnail = thumbnail;
+        this.color = color;
+        this.author = author;
     }
 
     send(): void {
@@ -29,7 +35,8 @@ export class Embed
             .setDescription(this.message)
             .setImage(this.image)
             .setThumbnail(this.thumbnail)
-            .setColor(0x36393f)
+            .setColor(this.color)
+            .setAuthor(this.author[0], this.author[1])
             
         this.object.channel.send("", { embed })
     };

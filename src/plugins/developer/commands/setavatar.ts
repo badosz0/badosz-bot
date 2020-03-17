@@ -1,7 +1,7 @@
-import { Text_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { core } from "../../../index";
 
-export = new Text_command ({
+export = new Command ({
     trigger : "setavatar",
     developer: true,
     output : ({args = []}: Command_output) => 
@@ -9,11 +9,15 @@ export = new Text_command ({
         try 
         {
             core.user.setAvatar(args.join(' '))
-            return "Avatar changed."
+            return {
+                text: "Avatar changed."
+            }
         }
         catch (error)
         {
-            return `\`\`\`js\n${error}\`\`\``
+            return {
+                text: `\`\`\`js\n${error}\`\`\``
+            }
         }
     }
 })

@@ -1,7 +1,7 @@
-import { Text_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { core } from "../../../index";
 
-export = new Text_command ({
+export = new Command ({
     trigger : "eval",
     developer: true,
     output : ({args = []}: Command_output) => 
@@ -11,11 +11,15 @@ export = new Text_command ({
             const before = Date.now()
             const output = eval(args.slice(0).join(" "))
             const eval_time = Date.now() - before;
-            return `\`\`\`js\n${output}\`\`\`\n${eval_time}ms`
+            return {
+                text: `\`\`\`js\n${output}\`\`\`\n${eval_time}ms`
+            }
         }
         catch (error)
         {
-            return `\`\`\`js\n${error}\`\`\``
+            return {
+                text: `\`\`\`js\n${error}\`\`\``
+            }
         }
     }
 })

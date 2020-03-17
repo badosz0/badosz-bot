@@ -1,6 +1,6 @@
-import { Text_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 
-export = new Text_command ({
+export = new Command ({
     trigger : "perms",
     output : ({message}: Command_output) => 
     {
@@ -12,6 +12,8 @@ export = new Text_command ({
             perms += `${perm ? "<:markYes:568830907666923525>" : "<:markNo:568830953938616330>"}\`${perm.replace(/_/g, ' ')}\`\n`
         }
 
-        return `${message.guild.me} permissions in \`${message.guild.name}\`\n\n${perms}`
+        return {
+            text: `${message.guild.me} permissions in \`${message.guild.name}\`\n\n${perms}`
+        }
     }
 })

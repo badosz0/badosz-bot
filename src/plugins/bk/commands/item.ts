@@ -1,4 +1,4 @@
-import { Image_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { get_user } from "../../../utils/user";
 
 const fetch = require('node-fetch')
@@ -18,7 +18,7 @@ const types = [
     "Scourge"
 ]
 
-export = new Image_command ({
+export = new Command ({
     trigger : "item",
     developer: false,
     limit_to: ["440553300203667477"],

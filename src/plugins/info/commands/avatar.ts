@@ -1,7 +1,7 @@
-import { Image_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { get_user } from "../../../utils/user";
 
-export = new Image_command ({
+export = new Command ({
     trigger : "avatar",
     developer: false,
     usage: "[mention/id]",

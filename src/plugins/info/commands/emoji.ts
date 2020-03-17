@@ -1,10 +1,10 @@
-import { Image_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { core } from "../../../index";
 import { Util } from "discord.js";
 
 const twemoji = require("twemoji")
 
-export = new Image_command ({
+export = new Command ({
     trigger : "emoji",
     developer: false,
     usage: "<emoji>",

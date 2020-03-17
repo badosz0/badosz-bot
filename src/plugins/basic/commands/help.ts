@@ -1,7 +1,7 @@
-import { Text_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 import { core } from "../../../index";
 
-export = new Text_command ({
+export = new Command ({
     trigger : "help",
     output : ({message}: Command_output) => 
     {
@@ -20,6 +20,8 @@ export = new Text_command ({
             help += "\n"
         })
     
-        return help
+        return {
+            text: help
+        }
     }
 })

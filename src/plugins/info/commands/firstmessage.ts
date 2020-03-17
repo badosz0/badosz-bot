@@ -1,6 +1,6 @@
-import { Image_command, Command_output } from "../../../structures/command";
+import { Command, Command_output } from "../../../structures/command";
 
-export = new Image_command ({
+export = new Command ({
     trigger : "firstmessage",
     developer: false,
     output : async ({message, args = []}: Command_output) => 
