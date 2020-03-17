@@ -2,7 +2,8 @@ import { Bot } from "../index";
 
 const events: {[event_name: string]: string} = {
     ready : "ready",
-    message : "message"
+    message : "message",
+    messageDelete : "message_delete"
 }
 
 export default class Event_handler 

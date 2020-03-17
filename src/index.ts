@@ -19,6 +19,7 @@ export class Bot extends Client
     public api_port: number;
     public plugins: any[] = [];
     public developer: string;
+    public cache: any;
     
     constructor (settings: Json_settings)
     {
@@ -32,7 +33,10 @@ export class Bot extends Client
         this.prefix = settings.prefix;
         this.developer = settings.developer;
         this.api_port = settings.api_port;
-        
+        this.cache = {
+            guilds: {}
+        };
+
         this.login(settings.token);
 
         require("./handlers/api").init(this)
