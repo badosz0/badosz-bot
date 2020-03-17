@@ -3,8 +3,37 @@ import { core } from "../../../index";
 
 export = new Command ({
     trigger : "help",
-    output : ({message}: Command_output) => 
+    usage: `[command]`,
+    output : async ({message, args = []}: Command_output) => 
     {
+
+        if (args[0])
+        {
+            let command: Command | undefined;
+    
+            await core.plugins.forEach(plugin => 
+            {
+                const command_match = plugin.commands.find((plugin_command: Command) =>
+                    plugin_command.trigger == args[0].toLowerCase()
+                  );
+                  if (command_match) 
+                  {
+                    command = command_match;
+                  }
+          
+            })
+          
+    
+            if (command)
+            {
+                return {
+                    text: `**Command: **${command.trigger}\n**Usage: **${core.prefix}${command.trigger} ${command.usage}`
+                }
+            }
+    
+        }
+    
+
         let help = ""
 
         core.plugins.forEach(plugin => {
