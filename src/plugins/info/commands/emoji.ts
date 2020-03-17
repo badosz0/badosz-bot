@@ -49,7 +49,7 @@ export = new Image_command ({
         id = discord_emoji.id ? discord_emoji.id : id
 
         return {
-            text: `\`Guild:\` ${guild}\n\`ID:\` ${id}\n\`Url:\` [[link]](${url})`,
+            text: `**Guild:** ${guild}\n**ID:** ${id}\n**Url:** [[link]](${url})`,
             thumbnail: url
         }
     }
