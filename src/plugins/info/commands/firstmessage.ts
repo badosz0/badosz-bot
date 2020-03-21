@@ -9,8 +9,9 @@ export = new Command ({
         const first_message = messages.first()
 
         return {
-            text: `${first_message.author}: ${first_message.content}\n\n[[link]](${first_message.url})\nID: ${first_message.id}`,
-            thumbnail: first_message.author.displayAvatarURL
+            text: `[${first_message.author.tag} said:](${first_message.url})\n ${first_message.content}`,
+            thumbnail: first_message.author.displayAvatarURL,
+            footer: `ID: ${first_message.id}`
         }
     }
 })
