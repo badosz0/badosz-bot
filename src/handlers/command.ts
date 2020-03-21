@@ -36,7 +36,8 @@ export async function run (message: Message) : Promise<void>
             message: 
             `This server is \`not whitelisted\`
 
-            Visit this [discord server](https://discord.gg/ZwPfRfp) for more details.`
+            Visit this [discord server](https://discord.gg/ZwPfRfp) for more details.`,
+            color: "#f44262"
         }).send()
     }
 
@@ -44,7 +45,8 @@ export async function run (message: Message) : Promise<void>
     {
         return new Embed({
             object: message,
-            message: `This command is for developers only.`
+            message: `This command is for developers only.`,
+            color: "#f44262"
         }).send()
     }
 
@@ -59,7 +61,8 @@ export async function run (message: Message) : Promise<void>
 
             return new Embed({
                 object: message,
-                message: `You need to have **${perm.toLowerCase().replace(`_`,` `)}** permission to use this command.`
+                message: `You need to have **${perm.toLowerCase().replace(`_`,` `)}** permission to use this command.`,
+                color: "#f44262"
             }).send()
         }
     }
@@ -72,7 +75,8 @@ export async function run (message: Message) : Promise<void>
 
             return new Embed({
                 object: message,
-                message: `${core.user} doesn't have **${perm.toLowerCase().replace(`_`,` `)}** permission.`
+                message: `${core.user} doesn't have **${perm.toLowerCase().replace(`_`,` `)}** permission.`,
+                color: "#f44262"
             }).send()
         }
     }
@@ -81,7 +85,8 @@ export async function run (message: Message) : Promise<void>
     {
         return new Embed({
             object: message,
-            message: `Sorry, you are permanently banned from using this bot.\n [[Appeal Here]](https://www.youtube.com/watch?v=dQw4w9WgXcQ)`
+            message: `Sorry, you are permanently banned from using this bot.\n [[Appeal Here]](https://www.youtube.com/watch?v=dQw4w9WgXcQ)`,
+            color: "#f44262"
         }).send()
     }
 
