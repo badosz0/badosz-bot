@@ -6,7 +6,18 @@ export = new Command ({
     output : ({message}: Command_output) => 
     {
         return {
-            text: `Api: **${Math.floor(core.ping)}ms.** | Bot: **${Date.now() - message.createdTimestamp}ms.**`
+            fields: [
+                {
+                    title: "Api",
+                    text: `${Math.floor(core.ping)}ms`,
+                    inline: true
+                },
+                {
+                    title: "Bot",
+                    text: `${Date.now() - message.createdTimestamp}ms`,
+                    inline: true
+                }
+            ]
         }
     }
 })
