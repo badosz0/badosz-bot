@@ -13,7 +13,7 @@ export = new Command ({
         const webp = png.replace('.png', '.webp')
         const jpg = png.replace('.png', '.jpg')
         return {
-            text: `${user.tag} (${user.id})\n[source](${source}) | [png](${png}) | [webp](${webp}) | [jpg](${jpg})`,
+            text: `**${user.tag}** (${user.id})\n[source](${source}) | [png](${png}) | [webp](${webp}) | [jpg](${jpg})`,
             image: source
         }
     }

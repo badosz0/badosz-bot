@@ -4,7 +4,7 @@ import { core } from "../../../index";
 export = new Command ({
     trigger : "eval",
     developer: true,
-    output : ({args = []}: Command_output) => 
+    output : ({message, args = []}: Command_output) => 
     {
         try 
         {
