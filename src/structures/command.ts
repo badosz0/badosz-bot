@@ -61,7 +61,8 @@ export class Command
             thumbnail: output.thumbnail ? output.thumbnail : "",
             color: output.error ? "#f44262" : undefined,
             author: output.author,
-            fields: output.fields
+            fields: output.fields,
+            footer: output.footer
         }).send()
     }
 

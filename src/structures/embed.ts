@@ -9,6 +9,7 @@ export interface Embed_options
     color?: string;
     author?: string[];
     fields?: any[]
+    footer?: string
 }
 
 export class Embed
@@ -20,8 +21,18 @@ export class Embed
     public color : string;
     public author: string[];
     public fields: any[];
+    public footer: string;
 
-    constructor ({object, message, image = "", thumbnail = "", color = "#ffe680", author = ["", ""], fields = []}: Embed_options)
+    constructor ({
+        object, 
+        message, 
+        image = "", 
+        thumbnail = "", 
+        color = "#ffe680", 
+        author = ["", ""], 
+        fields = [],
+        footer = ""
+    }: Embed_options)
     {
         this.object = object;
         this.message = message;
@@ -30,6 +41,7 @@ export class Embed
         this.color = color;
         this.author = author;
         this.fields = fields;
+        this.footer = footer;
     }
 
     send(): void {
@@ -40,6 +52,7 @@ export class Embed
             .setThumbnail(this.thumbnail)
             .setColor(this.color)
             .setAuthor(this.author[0], this.author[1])
+            .setFooter(this.footer)
             this.fields.forEach(field => 
             {                
                 field == "blank" ? embed.addBlankField() : embed.addField(field.title, field.text, field.inline)
