@@ -11,7 +11,10 @@ export = new Command ({
         
         if (!options.includes(","))
         {
-            return 'Please include more options separated with ",".'
+            return {
+                text: '**Please include more options separated with ",".**',
+                error: true
+            }
         }
 
         return {
