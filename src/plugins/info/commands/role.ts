@@ -15,14 +15,42 @@ export = new Command ({
         }
         
         return {
-            text: `**Name:** ${role.name}\n` +
-                  `**ID:** ${role.id}\n` +
-                  `**Members:** ${role.members.size}\n` +
-                  `**Position:** ${role.position}\n` +
-                  `**Hoisted:** ${role.hoist ? 'Yes' : 'No'}\n` +
-                  `**External:** ${role.managed ? 'Yes' : 'No'}\n` +
-                  `**Mentionable:** ${role.mentionable ? 'Yes' : 'No'}\n` +
-                  `**Created At:** ${role.createdAt.toUTCString()}\n`,
+            fields: [
+                {
+                    title: "Name",
+                    text: role.name,
+                    inline: true
+                },
+                {
+                    title: "Members",
+                    text: role.members.size,
+                    inline: true
+                },
+                {
+                    title: "ID",
+                    text: role.id,
+                    inline: true
+                },
+                {
+                    title: "Position",
+                    text: role.position,
+                    inline: true
+                },
+                {
+                    title: "Hoisted",
+                    text: role.hoist ? 'Yes' : 'No',
+                    inline: true
+                },
+                {
+                    title: "Mentionable",
+                    text: role.mentionable ? 'Yes' : 'No',
+                    inline: true
+                },
+                {
+                    title: "Created At",
+                    text: role.createdAt.toUTCString()
+                },
+            ],
             thumbnail: `https://dummyimage.com/250/${role.hexColor.slice(1)}/&text=%20`
         }
     }
