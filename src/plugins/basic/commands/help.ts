@@ -9,25 +9,33 @@ export = new Command ({
 
         if (args[0])
         {
-            let command: Command | undefined;
+            let command: Command | undefined
     
             await core.plugins.forEach(plugin => 
             {
                 const command_match = plugin.commands.find((plugin_command: Command) =>
                     plugin_command.trigger == args[0].toLowerCase()
-                  );
-                  if (command_match) 
-                  {
-                    command = command_match;
-                  }
-          
+                )
+                if (command_match) 
+                {
+                    command = command_match
+                }
             })
           
     
             if (command)
             {
                 return {
-                    text: `**Command: **${command.trigger}\n**Usage: **${core.prefix}${command.trigger} ${command.usage}`
+                    fields: [
+                        {
+                            title: "Command",
+                            text: command.trigger
+                        },
+                        {
+                            title: "Usage",
+                            text: `${core.prefix}${command.trigger} ${command.usage}`
+                        }
+                    ]
                 }
             }
     
