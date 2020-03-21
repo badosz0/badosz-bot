@@ -56,11 +56,12 @@ export class Command
 
         new Embed({
             object: message,
-            message: output.text,
+            message: output.text ? output.text : "",
             image: output.image ? output.image : "",
             thumbnail: output.thumbnail ? output.thumbnail : "",
             color: output.error ? "#f44262" : undefined,
-            author: output.author
+            author: output.author,
+            fields: output.fields
         }).send()
     }
 
