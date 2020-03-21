@@ -8,7 +8,7 @@ export = new Command ({
     trigger : "emoji",
     developer: false,
     usage: "<emoji>",
-    output : async ({message, args = []}: Command_output) => 
+    output : async ({ args = []}: Command_output) => 
     {
         if (!args[0])
         {
@@ -49,7 +49,29 @@ export = new Command ({
         id = discord_emoji.id ? discord_emoji.id : id
 
         return {
-            text: `**Guild:** ${guild}\n**ID:** ${id}\n**Url:** [[link]](${url})`,
+            fields: [
+                {
+                    title: "Name",
+                    text: name,
+                    inline: true
+                },
+                {
+                    title: "Guild",
+                    text: guild,
+                    inline: true
+                },
+                "blank",
+                {
+                    title: "ID",
+                    text: id,
+                    inline: true
+                },
+                {
+                    title: "Url",
+                    text: `[[link]](${url})`,
+                    inline: true
+                }
+            ],
             thumbnail: url
         }
     }
