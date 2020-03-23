@@ -6,4 +6,4 @@
 
 ### Contributing
 
-If you want to contribute to Mike, [join support server](https://discord.gg/ZwPfRfp).
+If you want to contribute to Badosz Bot, [join support server](https://discord.gg/ZwPfRfp).
