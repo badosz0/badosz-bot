@@ -1,10 +1,11 @@
-import { Message, PermissionResolvable } from "discord.js"
+import { Message, PermissionResolvable, TextChannel } from "discord.js"
 import { core } from "../index"
 import { Command } from "../structures/command";
 import { Embed } from "../structures/embed";
 
 const whitelist = require("./whitelist")
 const blacklist = require("../../config/blacklist.json")
+const logs = require("../../config/logs.json")
 
 export async function run (message: Message) : Promise<void>
 {  
@@ -90,5 +91,8 @@ export async function run (message: Message) : Promise<void>
         }).send()
     }
 
-    command.run(message, args);
+    command.run(message, args)
+    const log_channel = await message.client.channels.find(ch => ch.id == logs.commands)
+    if (!((log_channel): log_channel is TextChannel => log_channel.type === 'text')(log_channel)) return
+    if (log_channel) log_channel.send(`<:markNeutral:579295597782237235>**${message.author.tag} (${message.author.id})** in **${message.guild.name}**: ${message.content}`)
 }
