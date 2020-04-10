@@ -26,7 +26,7 @@ export = new Command ({
     {
         const user = await get_user(message, args)
         const member = await message.guild.fetchMember(user)
-        
+
         const profile = await fetch(`https://discordapp.com/api/v7/users/${user.id}`, {
             method: "Get", 
              headers: { 'Authorization': `Bot ${message.client.token}`}
@@ -37,15 +37,15 @@ export = new Command ({
         let user_badges = ""
     
         Object.keys(badges).forEach(badge => {
-            if (is_bit_set(flags, parseInt(badge))) user_badges += `${badges[parseInt(badge)]}`
+            if (is_bit_set(flags, parseInt(badge))) user_badges += `${badges[parseInt(badge)]} `
         })
 
         const support = await message.client.guilds.get("340947847728070666")
         const dt =      await message.client.guilds.get("466179424291651614")
         const emojis =  await message.client.guilds.get("473959011557965835")
 
-        if (support && support.members.get(user.id)) user_badges += `<:badosz:434830069416984596>`
-        if (dt && dt.members.get(user.id))           user_badges += `<:salio_desire:467000544259735563>`
+        if (support && support.members.get(user.id)) user_badges += `<:badosz:434830069416984596> `
+        if (dt && dt.members.get(user.id))           user_badges += `<:salio_desire:467000544259735563> `
         if (emojis && emojis.members.get(user.id))   user_badges += `:smile:`
 
         return {
