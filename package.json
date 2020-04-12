@@ -19,7 +19,7 @@
     "node-fetch": "^2.6.0",
     "node-pre-gyp": "^0.14.0",
     "twemoji": "^12.1.5",
-    "minimist": ">=1.2.2",
+    "minimist": ">=1.2.3",
     "acorn": ">=5.7.4"
 
   },
