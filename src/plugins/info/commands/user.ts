@@ -15,7 +15,8 @@ const badges: {[bit: number]: string} = {
     7: "<:hypeBrilliance:495281269157003265>",
     8: "<:hypeBalance:495281269249146920>",
     9: "<:badgeSupporter:698151462278135869>",
-    14: "<:badgeBugHunter:698151487091507231>"
+    14: "<:badgeBugHunter:698151487091507231>",
+    17: "<:badgeBotDev:698151382586359839>"
 }
 
 export = new Command ({
@@ -47,7 +48,7 @@ export = new Command ({
         if (support && support.members.get(user.id)) user_badges += `<:badosz:434830069416984596> `
         if (dt && dt.members.get(user.id))           user_badges += `<:salio_desire:467000544259735563> `
         if (emojis && emojis.members.get(user.id))   user_badges += `:smile:`
-
+        
         return {
             fields: [
                 {
@@ -111,7 +112,7 @@ export = new Command ({
                 },
                 {
                     title: "Badges",
-                    text: user_badges
+                    text: user_badges ? user_badges : "none"
                 },
             ],
             thumbnail: user.displayAvatarURL

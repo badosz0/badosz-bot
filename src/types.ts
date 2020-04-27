@@ -7,4 +7,5 @@ export interface Json_settings extends ClientOptions
     token : string;
     prefix : string;
     api_port: number;
+    database: any
 }

@@ -7,6 +7,7 @@ const prefixes = require("../config/prefixes.json");
 const tokens = require("../config/tokens.json");
 const roles = require("../config/roles.json");
 const ports = require("../config/ports.json");
+const database = require("../config/database.json");
 
 export class Bot extends Client 
 {
@@ -14,7 +15,8 @@ export class Bot extends Client
         events : Events_handler;
         plugins : Plugin_handler;
     };
-    
+
+    public db: any
     public prefix: string;
     public api_port: number;
     public plugins: any[] = [];
@@ -37,6 +39,9 @@ export class Bot extends Client
             guilds: {}
         };
 
+        // this.db = require("./database")
+        // this.db.init()
+
         this.login(settings.token);
 
         require("./handlers/api").init(this)
@@ -49,6 +54,7 @@ export const core = new Bot (
         developer : roles.developer,
         token : tokens.discord,
         api_port : ports.api,
+        database: (process.argv[2] == "beta" ? database.beta : database.main),
         disabledEvents: [
           'TYPING_START',
         ]
