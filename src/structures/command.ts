@@ -58,6 +58,7 @@ export class Command
             object: message,
             message: output.text ? output.text : "",
             image: output.image ? output.image : "",
+            attachment: output.attachment ? output.attachment : "",
             thumbnail: output.thumbnail ? output.thumbnail : "",
             color: output.error ? "#f44262" : undefined,
             author: output.author,

@@ -1,4 +1,5 @@
-import { Message, RichEmbed } from "discord.js";
+import { Message, RichEmbed, Attachment } from "discord.js";
+const imageType = require('image-type')
 
 export interface Embed_options
 {
@@ -8,6 +9,7 @@ export interface Embed_options
     thumbnail?: string;
     color?: string;
     author?: string[];
+    attachment?: Buffer
     fields?: any[]
     footer?: string
 }
@@ -22,6 +24,7 @@ export class Embed
     public author: string[];
     public fields: any[];
     public footer: string;
+    public attachment: Buffer
 
     constructor ({
         object, 
@@ -31,7 +34,8 @@ export class Embed
         color = "#ffe680", 
         author = ["", ""], 
         fields = [],
-        footer = ""
+        footer = "",
+        attachment = new Buffer("")
     }: Embed_options)
     {
         this.object = object;
@@ -42,9 +46,11 @@ export class Embed
         this.author = author;
         this.fields = fields;
         this.footer = footer;
+        this.attachment = attachment
     }
 
     send(): void {
+
 
         const embed = new RichEmbed()
             .setDescription(this.message)
@@ -58,6 +64,13 @@ export class Embed
                 field == "blank" ? embed.addBlankField() : embed.addField(field.title, field.text, field.inline)
             })
             
+            if (this.attachment.length > 0)
+            {
+                const type = imageType(this.attachment)
+                const file = new Attachment(this.attachment, `file.${type ? type.ext : 'png'}`)
+                embed.file = file
+                embed.setImage(`attachment://file.${type ? type.ext : 'png'}`)
+            }
         this.object.channel.send("", { embed })
     };
 
