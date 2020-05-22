@@ -48,12 +48,20 @@ export = new Command ({
 
             if ((plugin.id == "dev" && message.author.id != core.developer) || (plugin.limit_to && !plugin.limit_to.includes(message.guild.id))) return
 
-            help += `**${plugin.name}**\n`
-            help += plugin.commands.map((
-                command: { 
-                    trigger: string; 
-                }) => `\`${command.trigger}\``)
-                .join(", ")
+            help += `**${plugin.name}** (${plugin.commands.length})\n`
+            
+            if (plugin.id == "nsfw")
+            {
+                help += `\`This is for NSFW channels only.\``
+            }
+            else
+            {
+                help += plugin.commands.map((
+                    command: { 
+                        trigger: string; 
+                    }) => `\`${command.trigger}\``)
+                    .join(", ")  
+            }
             help += "\n"
         })
     
