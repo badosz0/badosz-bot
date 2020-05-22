@@ -42,6 +42,15 @@ export async function run (message: Message) : Promise<void>
         }).send()
     }
 
+    if (command.nsfw && !(message.channel as TextChannel).nsfw)
+    {
+        return new Embed({
+            object: message,
+            message: `This command is only for NSFW channels.`,
+            color: "#f44262"
+        }).send()
+    }
+
     if (command.developer && message.author.id != core.developer)
     {
         return new Embed({

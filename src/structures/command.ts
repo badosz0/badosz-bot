@@ -1,4 +1,4 @@
-import { Message } from "discord.js";
+import { Message, TextChannel } from "discord.js";
 import { Embed } from "./embed";
 import { core } from "../index";
 
@@ -20,7 +20,7 @@ export interface Command_options
     output: ({message}: Command_output) => any;
     user_perms?: string[];
     bot_perms?: string[];
-
+    nsfw?: boolean;
 }
 
 
@@ -33,8 +33,9 @@ export class Command
     public limit_to: string[];
     public user_perms: string[];
     public bot_perms: string[];
+    public nsfw: boolean;
 
-    constructor ({trigger, output, developer = false, limit_to = [], usage = "", user_perms = [], bot_perms = []}: Command_options)
+    constructor ({trigger, output, developer = false, limit_to = [], usage = "", user_perms = [], bot_perms = [], nsfw = false}: Command_options)
     {
         this.trigger = trigger;
         this.output = output;
@@ -43,6 +44,7 @@ export class Command
         this.usage = usage;
         this.bot_perms = bot_perms;
         this.user_perms = user_perms;
+        this.nsfw = nsfw
     }
 
     public async run(message: Message, args: string[] = []): Promise<void> 

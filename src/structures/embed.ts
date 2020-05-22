@@ -35,7 +35,7 @@ export class Embed
         author = ["", ""], 
         fields = [],
         footer = "",
-        attachment = new Buffer("")
+        attachment = Buffer.from("")
     }: Embed_options)
     {
         this.object = object;
