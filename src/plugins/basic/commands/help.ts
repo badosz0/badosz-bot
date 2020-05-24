@@ -1,5 +1,6 @@
 import { Command, Command_output } from "../../../structures/command";
 import { core } from "../../../index";
+import { TextChannel } from "discord.js";
 
 export = new Command ({
     trigger : "help",
@@ -50,7 +51,7 @@ export = new Command ({
 
             help += `**${plugin.name}** (${plugin.commands.length})\n`
             
-            if (plugin.id == "nsfw")
+            if (plugin.id == "nsfw" && !(message.channel as TextChannel).nsfw)
             {
                 help += `\`This is for NSFW channels only.\``
             }
