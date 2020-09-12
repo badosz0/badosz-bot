@@ -19,7 +19,7 @@
     "image-type": "^4.1.0",
     "minimist": ">=1.2.3",
     "node-chartist": "^1.0.5",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-pre-gyp": "^0.14.0",
     "twemoji": "^12.1.5"
   },
