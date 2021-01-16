@@ -1,77 +1,54 @@
-import { Message, RichEmbed, Attachment } from "discord.js";
-const imageType = require('image-type')
+import { Message, MessageEmbed, MessageAttachment, Constants } from "discord.js"
+import imageType from "image-type"
 
-export interface Embed_options
-{
-    object: Message;
-    message: string;
-    image?: string;
-    thumbnail?: string;
-    color?: string;
-    author?: string[];
+export interface Field {
+    title: string
+    text?: string
+    inline?: boolean
+}
+
+export interface EmbedOptions {
+    message?: string
+    color?: string
+    image?: string
+    thumbnail?: string
+    author?: string[]
     attachment?: Buffer
-    fields?: any[]
+    fields?: Field[]
     footer?: string
 }
 
-export class Embed
-{
-    public object: Message;
-    public message: string;
-    public image: string;
-    public thumbnail : string;
-    public color : string;
-    public author: string[];
-    public fields: any[];
-    public footer: string;
-    public attachment: Buffer
 
-    constructor ({
-        object, 
-        message, 
-        image = "", 
-        thumbnail = "", 
-        color = "#ffe680", 
-        author = ["", ""], 
-        fields = [],
-        footer = "",
-        attachment = Buffer.from("")
-    }: Embed_options)
-    {
-        this.object = object;
-        this.message = message;
-        this.image = image;
-        this.thumbnail = thumbnail;
-        this.color = color;
-        this.author = author;
-        this.fields = fields;
-        this.footer = footer;
-        this.attachment = attachment
+export class Embed {
+    public options: EmbedOptions
+    public object: Message
+
+    constructor(object: Message, options: EmbedOptions) {
+        this.options = options
+        this.object = object
     }
 
-    send(): void {
+    async send(): Promise<void> {
+        const embed = new MessageEmbed()
+            .setDescription(this.options.message || "")
+            .setColor(this.options.color || Constants.Colors.WHITE - 1)
+            .setImage(this.options.image || "")
+            .setThumbnail(this.options.thumbnail || "")
+            .setAuthor(this.options.author?.[0] || "", this.options.author?.[1])
+            .setFooter(this.options.footer || "")
+        
+        this.options.fields?.forEach(field => {
+            field.title == "blank" 
+                ? embed.addField("\u200b", "\u200b") 
+                : embed.addField(field.title, field.text, field.inline)
+        })
 
-
-        const embed = new RichEmbed()
-            .setDescription(this.message)
-            .setImage(this.image)
-            .setThumbnail(this.thumbnail)
-            .setColor(this.color)
-            .setAuthor(this.author[0], this.author[1])
-            .setFooter(this.footer)
-            this.fields.forEach(field => 
-            {                
-                field == "blank" ? embed.addBlankField() : embed.addField(field.title, field.text, field.inline)
-            })
-            
-            if (this.attachment.length > 0)
-            {
-                const type = imageType(this.attachment)
-                const file = new Attachment(this.attachment, `file.${type ? type.ext : 'png'}`)
-                embed.file = file
-                embed.setImage(`attachment://file.${type ? type.ext : 'png'}`)
-            }
-        this.object.channel.send("", { embed })
-    };
-
+        if (this.options.attachment && this.options.attachment.length > 0) {
+            const type = imageType(this.options.attachment)
+            const file = new MessageAttachment(this.options.attachment, `x.${type ? type.ext : "png"}`)
+            embed.attachFiles([file])
+            embed.setImage(`attachment://x.${type ? type.ext : "png"}`)
+        }
+        this.object.channel.send({embed: embed})
+    }
 }

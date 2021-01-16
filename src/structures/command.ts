@@ -1,81 +1,42 @@
-import { Message, TextChannel } from "discord.js";
-import { Embed } from "./embed";
-import { core } from "../index";
+import { Message, PermissionString } from "discord.js"
+import { Embed, EmbedOptions } from "./embed"
+import { core } from "../index"
 
-export type Trigger = string;
-
-export interface Command_output
-{
-    message: Message;
-    args? : string[];
+export interface CommandData {
+    trigger: string
+    usage?: string
+    developer?: boolean
+    user_perms?: PermissionString[]
+    bot_perms?: PermissionString[]
+    output: ({message}: CommandInput) => EmbedOptions | Promise<EmbedOptions | false>| false
 }
 
-
-export interface Command_options
-{
-    trigger: Trigger;
-    developer?: boolean;
-    usage?: string;
-    limit_to?: string[];
-    output: ({message}: Command_output) => any;
-    user_perms?: string[];
-    bot_perms?: string[];
-    nsfw?: boolean;
+export interface CommandInput {
+    message: Message
+    args?: string[]
 }
 
+export class Command {
+    public data: CommandData
 
-export class Command
-{
-    public trigger: Trigger;
-    public output: any;
-    public developer: boolean;
-    public usage: string;
-    public limit_to: string[];
-    public user_perms: string[];
-    public bot_perms: string[];
-    public nsfw: boolean;
-
-    constructor ({trigger, output, developer = false, limit_to = [], usage = "", user_perms = [], bot_perms = [], nsfw = false}: Command_options)
-    {
-        this.trigger = trigger;
-        this.output = output;
-        this.developer = developer;
-        this.limit_to = limit_to;
-        this.usage = usage;
-        this.bot_perms = bot_perms;
-        this.user_perms = user_perms;
-        this.nsfw = nsfw
+    constructor(data: CommandData) {
+        this.data = data
     }
 
-    public async run(message: Message, args: string[] = []): Promise<void> 
-    {
-        const output = await this.output({message, args})
-        
-        if (!output)
-        {
-            return show_usage(message, this)
+    public async run(message: Message, args: string[] = []): Promise<void> {
+        const output = await this.data.output({message, args})
+        if (!output) {
+            return this.show_usage(message)
         }
 
-        new Embed({
-            object: message,
-            message: output.text ? output.text : "",
-            image: output.image ? output.image : "",
-            attachment: output.attachment ? output.attachment : "",
-            thumbnail: output.thumbnail ? output.thumbnail : "",
-            color: output.error ? "#f44262" : undefined,
-            author: output.author,
-            fields: output.fields,
-            footer: output.footer
-        }).send()
+        new Embed(message, output).send()
     }
 
-}
-
-function show_usage(message: Message, command: Command) : void
-{
-    new Embed({
-        object: message,
-        message: `**Valid Usage:**\n${core.prefix}${command.trigger} ${command.usage}`,
-        color: "#f44262"
-    }).send()
+    public show_usage(message: Message): void {
+        new Embed(message, {
+            message: `**Valid Usage:**\n${core.prefix}${this.data.trigger} ${this.data.usage}`,
+            color: "#f44262"
+        }).send()
+    }
+    
 }

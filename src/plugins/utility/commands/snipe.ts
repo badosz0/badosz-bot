@@ -1,24 +1,22 @@
-import { Command, Command_output } from "../../../structures/command";
-import { core } from "../../../index";
+import { Command, CommandInput } from "../../../structures/command"
+import { core } from "../../../index"
+import { colors } from "../../../constants"
 
 export = new Command ({
     trigger : "snipe",
-    output : ({message}: Command_output) => 
-    {
-        if (!core.cache.guilds[message.guild.id] || !core.cache.guilds[message.guild.id].snipe.message)
-        {
+    output: ({message}: CommandInput) => {
+        if (!core.cache[message.guild?.id as string]?.snipe.message) {
             return {
-                text: "No snipes in this server.",
-                error: true
+                message: "No snipes in this server.",
+                color: colors.error
             }
         }
-        else
-        {
-            const snipe = core.cache.guilds[message.guild.id].snipe
+        else {
+            const snipe = core.cache[message.guild?.id as string].snipe
             return {
-                text: snipe.message.content,
-                author: [snipe.message.author.tag, snipe.message.author.displayAvatarURL],
-                image: snipe.image
+                message: snipe.message?.content,
+                author: [snipe.message?.author.tag as string, snipe.message?.author.displayAvatarURL() as string],
+                image: snipe.img
             }
         }
     }

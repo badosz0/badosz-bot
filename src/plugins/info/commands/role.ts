@@ -1,19 +1,17 @@
-import { Command, Command_output } from "../../../structures/command";
+import { Command, CommandInput } from "../../../structures/command"
 
 export = new Command ({
     trigger : "role",
     developer: false,
     usage: "<mention/id/name>",
-    output : async ({message, args = []}: Command_output) => 
-    {
+    output: async ({message, args = []}: CommandInput) => {
         let role = message.mentions.roles.first()
-        if (!role) role = message.guild.roles.find(role => role.name === args.join(' '))
-        if (!role) role = message.guild.roles.find(role => role.id === args.join(' '))
-        if (!role) 
-        {
+        if (!role) role = message.guild?.roles.cache.find(role => role.name === args.join(" "))
+        if (!role) role = message.guild?.roles.cache.find(role => role.id === args.join(" "))
+        if (!role) {
             return false
         }
-        
+
         return {
             fields: [
                 {
@@ -23,7 +21,7 @@ export = new Command ({
                 },
                 {
                     title: "Members",
-                    text: role.members.size,
+                    text: role.members.size as unknown as string,
                     inline: true
                 },
                 {
@@ -33,17 +31,17 @@ export = new Command ({
                 },
                 {
                     title: "Position",
-                    text: role.position,
+                    text: role.position as unknown as string,
                     inline: true
                 },
                 {
                     title: "Hoisted",
-                    text: role.hoist ? 'Yes' : 'No',
+                    text: role.hoist ? "Yes" : "No",
                     inline: true
                 },
                 {
                     title: "Mentionable",
-                    text: role.mentionable ? 'Yes' : 'No',
+                    text: role.mentionable ? "Yes" : "No",
                     inline: true
                 },
                 {

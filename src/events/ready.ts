@@ -1,17 +1,9 @@
-import { core } from "../index";
+import { core } from "../index"
 
-export function run () : void
-{
+export function run(): void {
     console.log("Badosz Bot is ready.");
     (function setPresence() {
-        core.user.setPresence(
-          { game:
-            { type: 'WATCHING',
-               name: `${core.prefix}help`
-            },
-            status: 'online'
-          }
-        )
+        core.user?.setActivity(`${core.prefix}help`, {type: 'WATCHING'})
         setTimeout(setPresence, 120000)
-      })()
+    })()
 }

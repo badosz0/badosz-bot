@@ -1,11 +1,11 @@
-import { Command, Command_output } from "../../../structures/command";
+import { Guild, GuildMember } from "discord.js"
+import { Command, CommandInput } from "../../../structures/command"
 
 export = new Command ({
     trigger : "server",
     developer: false,
     usage: "[name/id]",
-    output : async ({message, args = []}: Command_output) => 
-    {
+    output: async ({message, args = []}: CommandInput) => {
         const regions: {[region: string]: string} = {
             "europe":":flag_eu: Europe",
             "eu-central":":flag_eu: Europe",
@@ -22,17 +22,10 @@ export = new Command ({
             "us-south": ":flag_us: United States of America",
             "us-west":":flag_us: United States of America"
         }
-        const verification = [
-            "None", 
-            "Low",
-            "Medium", 
-            "(╯°□°）╯︵  ┻━┻", 
-            "┻━┻ミヽ(ಠ益ಠ)ノ彡┻━┻"
-        ]
 
-        let server = message.client.guilds.get(args[0])
-        if (!server) server = message.client.guilds.find(guild => guild.name === args.join(' '))
-        if (!server) server = message.guild
+        let server = message.client.guilds.cache.get(args[0])
+        if (!server) server = message.client.guilds?.cache.find(guild => guild.name === args.join(" "))
+        if (!server) server = message.guild as Guild
 
         return {
             fields: [
@@ -43,7 +36,7 @@ export = new Command ({
                 },
                 {
                     title: "Owner",
-                    text: server.owner.user.tag,
+                    text: server.owner ? (server.owner as GuildMember).user.tag : "-",
                     inline: true
                 },
                 {
@@ -53,7 +46,7 @@ export = new Command ({
                 },
                 {
                     title: "Members",
-                    text: server.members.size,
+                    text: server.members.cache.size as unknown as string,
                     inline: true
                 },
                 {
@@ -63,22 +56,22 @@ export = new Command ({
                 },
                 {
                     title: "Verification Level",
-                    text: verification[server.verificationLevel],
+                    text: server.verificationLevel.toLowerCase(),
                     inline: true
                 },
                 {
                     title: "Emojis",
-                    text: server.emojis.size,
+                    text: server.emojis.cache.size as unknown as string,
                     inline: true
                 },
                 {
                     title: "Text Channels",
-                    text: server.channels.filter(channel => channel.type == 'text').size,
+                    text: server.channels.cache.filter(channel => channel.type == "text").size as unknown as string,
                     inline: true
                 },
                 {
                     title: "Voice Channels",
-                    text: server.channels.filter(channel => channel.type == 'voice').size,
+                    text: server.channels.cache.filter(channel => channel.type == "voice").size as unknown as string,
                     inline: true
                 },
                 {
@@ -86,7 +79,7 @@ export = new Command ({
                     text: server.createdAt.toUTCString()
                 },
             ],
-            thumbnail: server.icon ? server.iconURL : `https://dummyimage.com/128/7289DA/FFFFFF/&text=${encodeURIComponent(server.nameAcronym)}`
+            thumbnail: server.icon ? server.iconURL() as string : `https://dummyimage.com/128/7289DA/FFFFFF/&text=${encodeURIComponent(server.nameAcronym)}`
         }
     }
 })

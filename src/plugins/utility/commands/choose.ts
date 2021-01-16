@@ -1,24 +1,22 @@
-import { Command, Command_output } from "../../../structures/command";
-import { core } from "../../../index";
-import { single } from "../../../utils/array";
+import { colors } from "../../../constants"
+import { Command, CommandInput } from "../../../structures/command"
+import { single } from "../../../utils/array"
 
 export = new Command ({
     trigger : "choose",
     usage: "<option>, <option>, [option]...",
-    output : ({message, args = []}: Command_output) => 
-    {
-        let options = args.join(" ")
+    output: ({args = []}: CommandInput) => {
+        const options = args.join(" ")
         
-        if (!options.includes(","))
-        {
+        if (!options.includes(",")) {
             return {
-                text: '**Please include more options separated with ",".**',
-                error: true
+                message: "**Please include more options separated with \",\".**",
+                color: colors.error
             }
         }
 
         return {
-            text: single(options.split(","))
+            message: single(options.split(",")) as string
         }
     }
 })

@@ -1,28 +1,22 @@
 import { Message } from "discord.js"
 import { core } from "../index"
 
-export async function run (message: Message) : Promise<void>
-{  
-    try
-    {
+export async function run (message: Message) : Promise<void> {  
+    try {
         let img
-        if (message.attachments.array()[0])
-        {
+        if (message.attachments.array()[0]) {
             img = message.attachments.array()[0].url
         }
-        if (!core.cache.guilds[message.guild.id]) 
-        {
-            core.cache.guilds[message.guild.id] = {
+        if (!core.cache[message.guild?.id as string]) {
+            core.cache[message.guild?.id as string] = {
                 snipe: {}
             }
         }
-        core.cache.guilds[message.guild.id].snipe = {
+        core.cache[message.guild?.id as string].snipe = {
             message: message,
-            image: img
+            img: img
         }
     }
-    catch(e)
-    {
-
-    }
+    // eslint-disable-next-line no-empty
+    catch(e) {}
 }

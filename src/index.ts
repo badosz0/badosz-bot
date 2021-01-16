@@ -1,62 +1,54 @@
-import { Client } from "discord.js";
-import { Json_settings } from "./types";
-import Events_handler from "./handlers/events";
-import Plugin_handler from "./handlers/plugins";
+/* eslint-disable @typescript-eslint/no-var-requires */
+import { Client, ClientOptions, Message } from "discord.js"
+import { Command } from "./structures/command"
+import { assign_events } from "./handlers/events"
+import load_plugins from "./handlers/plugins"
 
-const prefixes = require("../config/prefixes.json");
-const tokens = require("../config/tokens.json");
-const roles = require("../config/roles.json");
-const ports = require("../config/ports.json");
-const database = require("../config/database.json");
+const prefixes = require("../config/prefixes.json")
+const tokens = require("../config/tokens.json")
 
-export class Bot extends Client 
-{
-    public handlers: {
-        events : Events_handler;
-        plugins : Plugin_handler;
-    };
+export interface Settings extends ClientOptions {
+    prefix: string
+    token: string
+}
 
-    public db: any
-    public prefix: string;
-    public api_port: number;
-    public plugins: any[] = [];
-    public developer: string;
-    public cache: any;
-    
-    constructor (settings: Json_settings)
-    {
-        super(settings);
+export interface Plugin {
+    name: string
+    id: string
+    commands: Command[]
+}
 
-        this.handlers = {
-            events : new Events_handler (this),
-            plugins : new Plugin_handler (this)
-        };
-
-        this.prefix = settings.prefix;
-        this.developer = settings.developer;
-        this.api_port = settings.api_port;
-        this.cache = {
-            guilds: {}
-        };
-
-        // this.db = require("./database")
-        // this.db.init()
-
-        this.login(settings.token);
-
-        require("./handlers/api").init(this)
+export interface CacheData {
+    snipe: {
+        message?: Message
+        img?: string
     }
 }
 
-export const core = new Bot (
-    {
-        prefix : (process.argv[2] == "beta" ? prefixes.beta : prefixes.main),
-        developer : roles.developer,
-        token : tokens.discord,
-        api_port : ports.api,
-        database: (process.argv[2] == "beta" ? database.beta : database.main),
-        disabledEvents: [
-          'TYPING_START',
-        ]
+export type Cache = {[id: string]: CacheData} 
+
+export class Bot extends Client {
+    public prefix: string
+    public plugins: Plugin[]
+    public cache: Cache
+    
+    constructor(settings: Settings) {
+        super(settings)
+
+        this.prefix = settings.prefix
+        this.plugins = []
+        this.cache = {}
+
+        assign_events(this)
+        load_plugins(this)
+
+        this.login(settings.token)
     }
-)
+}
+
+const beta = process.argv[2] == "beta"
+
+export const core = new Bot({
+    prefix: beta ? prefixes.beta : prefixes.main,
+    token: beta ? tokens.discord_beta : tokens.discord_main
+})

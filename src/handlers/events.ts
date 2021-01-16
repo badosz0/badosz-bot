@@ -1,4 +1,4 @@
-import { Bot } from "../index";
+import { Bot } from "../index"
 
 const events: {[event_name: string]: string} = {
     ready : "ready",
@@ -6,12 +6,10 @@ const events: {[event_name: string]: string} = {
     messageDelete : "message_delete"
 }
 
-export default class Event_handler 
-{
-    constructor (bot: Bot)
-    {
-        Object.keys(events).forEach(event => {
-            bot.on(event, require(`../events/${events[event]}`).run);
-        })
-    }
-} 
+export function assign_events(bot: Bot): void {
+    Object.keys(events).forEach(event => {
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const func = require(`../events/${events[event]}`)
+        bot.on(event, func.run)
+    })
+}
