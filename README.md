@@ -1,4 +1,5 @@
 # Badosz Bot
+[![CodeFactor](https://www.codefactor.io/repository/github/badosz0/badosz-bot/badge)](https://www.codefactor.io/repository/github/badosz0/badosz-bot)
 [![Server](https://img.shields.io/discord/340947847728070666.svg?logo=discord&colorB=7289DA)](https://discord.gg/badosz)
 [![Top Language](https://img.shields.io/github/languages/top/badosz0/badosz-bot)](https://github.com/badosz0/badosz-bot)
 [![Github Contributors](https://img.shields.io/github/contributors/badosz0/badosz-bot.svg)](https://github.com/badosz0/badosz-bot/contributors)
