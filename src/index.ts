@@ -25,7 +25,7 @@ export interface CacheData {
     }
 }
 
-export type Cache = {[id: string]: CacheData} 
+export type Cache = {[id: string]: CacheData}
 
 export class Bot extends Client {
     public prefix: string

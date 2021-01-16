@@ -22,7 +22,7 @@ export = new Command ({
                 text : `**Reason: **${reason ? reason : "not specified."}`,
                 author : [`${args[0]} has been banned.`, ""]
             }
-        } 
+        }
         catch (e) {
             return {
                 text : "**I can not ban this user.**", color: colors.error

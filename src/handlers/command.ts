@@ -24,7 +24,7 @@ export async function run_command(message: Message): Promise<void> {
 
     if (!whitelist.includes(message.guild.id)) {
         return new Embed(message, {
-            message: 
+            message:
             `This server is \`not whitelisted\`.
 
             Visit this [discord server](https://discord.gg/badosz) for more details.`,
@@ -39,7 +39,7 @@ export async function run_command(message: Message): Promise<void> {
         }).send()
     }
 
-    const user = message.guild.members.cache.get(message.author.id) 
+    const user = message.guild.members.cache.get(message.author.id)
     const bot = message.guild.members.cache.get((core.user as ClientUser).id)
 
     if (user) {

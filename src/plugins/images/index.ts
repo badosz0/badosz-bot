@@ -3,7 +3,7 @@ import { get_api } from "../../utils/api"
 
 const commands: Command[] = []
 const images = [
-    "ant", 
+    "ant",
     "bird",
     "bee",
     "rabbit",

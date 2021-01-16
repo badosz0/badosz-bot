@@ -4,7 +4,7 @@ import { Command, CommandInput } from "../../../structures/command"
 export = new Command ({
     trigger : "firstmessage",
     developer: false,
-    output: async ({message}: CommandInput) => {    
+    output: async ({message}: CommandInput) => {
         const messages = await message.channel.messages.fetch({after: "1", limit: 1})
         const first_message = messages.first() as Message
 

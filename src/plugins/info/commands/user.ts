@@ -6,7 +6,7 @@ export = new Command ({
     trigger : "user",
     developer: false,
     usage: "[mention/id]",
-    output: async ({message, args = []}: CommandInput) => 
+    output: async ({message, args = []}: CommandInput) =>
     {
         const user = await get_user(message, args) as User
         const member = await message.guild?.members.fetch(user) as GuildMember

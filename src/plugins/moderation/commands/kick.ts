@@ -40,7 +40,7 @@ export = new Command ({
                     message : `**Reason: **${reason ? reason : "not specified."}`,
                     author : [`${tag} has been kicked.`, avatar]
                 }
-            } 
+            }
             catch (e) {
                 return {
                     message : "**I can not kick this user.**",

@@ -6,7 +6,7 @@ export async function get_api(endpoint: string, params: {[event_name: string]: s
 {
     const add = []
     for (const key in params) add.push(`${key}=${encodeURIComponent(params[key])}`)
-    return await fetch(`https://api.badosz.com/${endpoint}${add.length ? `?${add.join("&")}` : ""}`, {
+    return fetch(`https://api.badosz.com/${endpoint}${add.length ? `?${add.join("&")}` : ""}`, {
         method: "GET",
         headers: {
             Authorization: api

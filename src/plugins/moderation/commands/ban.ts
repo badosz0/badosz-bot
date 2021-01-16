@@ -40,7 +40,7 @@ export = new Command ({
                     message : `**Reason: **${reason ? reason : "not specified."}`,
                     author : [`${tag} has been banned.`, avatar]
                 }
-            } 
+            }
             catch (e) {
                 return {
                     message : "**I can not ban this user.**",

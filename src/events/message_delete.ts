@@ -1,7 +1,7 @@
 import { Message } from "discord.js"
 import { core } from "../index"
 
-export async function run (message: Message) : Promise<void> {  
+export async function run (message: Message) : Promise<void> {
     try {
         let img
         if (message.attachments.array()[0]) {

@@ -9,7 +9,10 @@ export = new Command ({
         
         let perms = ""
         for (const perm in bot_permissions) {
-            perms += `${bot_permissions[perm as PermissionString] ? emojis.yes : emojis.no}\`${perm.replace(/_/g, " ")}\`\n`
+            // eslint-disable-next-line no-prototype-builtins
+            if (bot_permissions.hasOwnProperty(perm)) {
+                perms += `${bot_permissions[perm as PermissionString] ? emojis.yes : emojis.no}\`${perm.replace(/_/g, " ")}\`\n`
+            }
         }
 
         return {

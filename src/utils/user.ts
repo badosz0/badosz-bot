@@ -4,15 +4,15 @@ export async function get_user (message: Message, args: string[], me = true): Pr
     let user
     
     if (me) {
-        user = message.author 
+        user = message.author
     } else {
         user = false
     }
     
     if (message.mentions.users.size) {  
         user = message.mentions.users.first() || user
-    } 
-    else if (args[0] && message.client.users.cache.get(args[0])) {   
+    }
+    else if (args[0] && message.client.users.cache.get(args[0])) {
         user = message.client.users.cache.get(args[0]) || user
     }
     

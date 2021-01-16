@@ -10,7 +10,7 @@ export = new Command ({
             return {
                 message: "No roles found.",
                 color: colors.error
-            } 
+            }
         }
         
         const list = await roles.filter(role => role.position !== 0)

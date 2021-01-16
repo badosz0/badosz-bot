@@ -14,7 +14,7 @@ export = new Command ({
                 allow: [
                     "SEND_MESSAGES",
                     "ADD_REACTIONS"
-                ], 
+                ],
 
             }], "")
 

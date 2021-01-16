@@ -16,7 +16,7 @@ export = new Command ({
                 deny: [
                     "SEND_MESSAGES",
                     "ADD_REACTIONS"
-                ], 
+                ],
 
             }], `${reason ? `**Reason:** ${reason}` : ""}`)
 

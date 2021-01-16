@@ -38,8 +38,8 @@ export class Embed {
             .setFooter(this.options.footer || "")
         
         this.options.fields?.forEach(field => {
-            field.title == "blank" 
-                ? embed.addField("\u200b", "\u200b") 
+            field.title == "blank"
+                ? embed.addField("\u200b", "\u200b")
                 : embed.addField(field.title, field.text, field.inline)
         })
 
