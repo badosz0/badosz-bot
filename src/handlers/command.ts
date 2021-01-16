@@ -3,6 +3,7 @@ import { Command } from "../structures/command"
 import { core } from "../index"
 import { whitelist, colors, developer } from "../constants"
 import { Embed } from "../structures/embed"
+import { log } from "../utils/logger"
 
 export async function run_command(message: Message): Promise<void> {
     if (!message.guild) return
@@ -65,4 +66,5 @@ export async function run_command(message: Message): Promise<void> {
     }
     
     command.run(message, args)
+    log("info", `${message.author.username} (${message.author.id}) in ${message.guild.id}: ${message}`)
 }

@@ -1,5 +1,6 @@
 import { Bot } from "../index"
 import fs from "fs"
+import { log } from "../utils/logger"
 
 export default function load_plugins(bot: Bot): void {
     const plugins = fs.readdirSync(`${__dirname}/../plugins`)
@@ -10,5 +11,5 @@ export default function load_plugins(bot: Bot): void {
         bot.plugins.push(plugin)
     }
       
-    console.log(`Loaded ${bot.plugins.length} plugins.`)
+    log("info", `Loaded ${bot.plugins.length} plugins.`)
 }
