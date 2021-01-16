@@ -9,7 +9,7 @@ export async function get_user (message: Message, args: string[], me = true): Pr
         user = false
     }
     
-    if (message.mentions.users.size) {  
+    if (message.mentions.users.size) {
         user = message.mentions.users.first() || user
     }
     else if (args[0] && message.client.users.cache.get(args[0])) {
