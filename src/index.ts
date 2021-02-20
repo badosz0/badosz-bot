@@ -22,6 +22,7 @@ export interface CacheData {
     snipe: {
         message?: Message
         img?: string
+        time?: number
     }
 }
 

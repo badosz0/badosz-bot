@@ -16,7 +16,8 @@ export = new Command ({
             return {
                 message: snipe.message?.content,
                 author: [snipe.message?.author.tag as string, snipe.message?.author.displayAvatarURL() as string],
-                image: snipe.img
+                image: snipe.img,
+                timestamp: snipe.time
             }
         }
     }

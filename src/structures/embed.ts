@@ -16,6 +16,7 @@ export interface EmbedOptions {
     attachment?: Buffer
     fields?: Field[]
     footer?: string
+    timestamp?: number
 }
 
 
@@ -36,6 +37,7 @@ export class Embed {
             .setThumbnail(this.options.thumbnail || "")
             .setAuthor(this.options.author?.[0] || "", this.options.author?.[1])
             .setFooter(this.options.footer || "")
+            .setTimestamp(this.options.timestamp)
         
         this.options.fields?.forEach(field => {
             field.title == "blank"

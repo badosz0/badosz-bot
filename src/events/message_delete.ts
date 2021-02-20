@@ -14,7 +14,8 @@ export async function run (message: Message) : Promise<void> {
         }
         core.cache[message.guild?.id as string].snipe = {
             message: message,
-            img: img
+            img: img,
+            time: Date.now()
         }
     }
     // eslint-disable-next-line no-empty
