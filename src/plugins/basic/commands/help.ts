@@ -27,7 +27,7 @@ export = new Command ({
                         },
                         {
                             title: "Usage",
-                            text: `${core.prefix}${command.data.trigger} ${command.data.usage || ""}`
+                            text: `${core.prefix}${command.data.trigger} ${command.data.usage?.replace(/{prefix}/g, core.prefix) || ""}`
                         }
                     ]
                 }

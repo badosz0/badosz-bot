@@ -8,7 +8,7 @@ export interface CommandData {
     developer?: boolean
     user_perms?: PermissionString[]
     bot_perms?: PermissionString[]
-    output: ({message}: CommandInput) => EmbedOptions | Promise<EmbedOptions | false>| false
+    output: ({message}: CommandInput) => EmbedOptions | Promise<EmbedOptions | boolean>| boolean
 }
 
 export interface CommandInput {
@@ -27,6 +27,10 @@ export class Command {
         const output = await this.data.output({message, args})
         if (!output) {
             return this.show_usage(message)
+        }
+
+        if (output === true) {
+            return
         }
 
         new Embed(message, output).send()
