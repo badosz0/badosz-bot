@@ -3,7 +3,7 @@ import { colors } from "../../../constants"
 import { Command, CommandInput } from "../../../structures/command"
 
 function correct(n: string): number {
-    return Math.min(Math.max(parseInt(n), 1), 100)
+    return Math.min(Math.max(parseFloat(n), 1), 100)
 }
 
 export = new Command ({
@@ -11,7 +11,7 @@ export = new Command ({
     user_perms: ["MANAGE_MESSAGES"],
     bot_perms: ["MANAGE_MESSAGES"],
     usage: "all <number of messages> [nolog]\n" +
-    "{prefix}clear embeds <number of messages> [nolog]\n" + 
+    "{prefix}clear embeds <number of messages> [nolog]\n" +
     "{prefix}clear attachments <number of messages> [nolog]\n" +
     "{prefix}clear links <number of messages> [nolog]\n" +
     "{prefix}clear bots <number of messages> [nolog]\n" +
@@ -33,21 +33,21 @@ export = new Command ({
     
             switch (args[0]) {
                 case "all":
-                    if (!parseInt(args[1])) return false
+                    if (!parseFloat(args[1])) return false
                     messages = messages.slice(0, correct(args[1]))
                     break
                 case "bots":
-                    if (!parseInt(args[1])) return false
+                    if (!parseFloat(args[1])) return false
                     messages = messages.filter(message => message.author.bot)
                     messages = messages.slice(0, correct(args[1]))
                     break
                 case "attachments":
-                    if (!parseInt(args[1])) return false
+                    if (!parseFloat(args[1])) return false
                     messages = messages.filter(message => message.content.includes("http"))
                     messages = messages.slice(0, correct(args[1]))
                     break
                 case "embeds":
-                    if (!parseInt(args[1])) return false
+                    if (!parseFloat(args[1])) return false
                     messages = messages.filter(message => message.embeds.length != 0)
                     messages = messages.slice(0, correct(args[1]))
                     break
@@ -58,40 +58,40 @@ export = new Command ({
                     } else {
                         return false
                     }
-                    if (!parseInt(args[2])) return false
+                    if (!parseFloat(args[2])) return false
                     messages = messages.slice(0, correct(args[2]))
                     break
                 case "after":
                     if (!message.channel.messages.cache.get(args[1])) return false
-                    messages = messages.filter(message => parseInt(message.id) > parseInt(args[1]))
+                    messages = messages.filter(message => parseFloat(message.id) > parseFloat(args[1]))
                     messages = messages.slice(0, correct(args[1]))
                     break
                 case "before":
                     if (!message.channel.messages.cache.get(args[1])) return false
-                    messages = messages.filter(message => parseInt(message.id) < parseInt(args[1]))
+                    messages = messages.filter(message => parseFloat(message.id) < parseFloat(args[1]))
                     messages = messages.slice(0, correct(args[1]))
                     break
                 case "with":
                     if (!args[1]) return false
-                    if (!parseInt(args[2])) return false
+                    if (!parseFloat(args[2])) return false
                     messages = messages.filter(message => message.content.includes(args[1]))
                     messages = messages.slice(0, correct(args[1]))
                     break
                 case "without":
                     if (!args[1]) return false
-                    if (!parseInt(args[2])) return false
+                    if (!parseFloat(args[2])) return false
                     messages = messages.filter(message => !message.content.includes(args[1]))
                     messages = messages.slice(0, correct(args[1]))
                     break
                 case "startsWith":
                     if (!args[1]) return false
-                    if (!parseInt(args[2])) return false
+                    if (!parseFloat(args[2])) return false
                     messages = messages.filter(message => message.content.startsWith(args[1]))
                     messages = messages.slice(0, correct(args[1]))
                     break
                 case "endsWith":
                     if (!args[1]) return false
-                    if (!parseInt(args[2])) return false
+                    if (!parseFloat(args[2])) return false
                     messages = messages.filter(message => message.content.endsWith(args[1]))
                     messages = messages.slice(0, correct(args[1]))
                     break
