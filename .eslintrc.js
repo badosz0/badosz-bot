@@ -17,9 +17,9 @@ module.exports = {
         "@typescript-eslint"
     ],
     rules: {
-        "indent": ["error", 4, {"SwitchCase": 1}],
-        "quotes": ["error", "double"],
-        "semi": ["error", "never"],
+        "indent": ["error", 4, {"SwitchCase": 1}, {"allowIndentationTabs": true}],
+        "quotes": 0,
+        "semi": ["error", "always"],
         "no-multiple-empty-lines":["warn", {"max": 2, "maxEOF": 1}],
         "@typescript-eslint/ban-types": ["error", {
             "types": {
