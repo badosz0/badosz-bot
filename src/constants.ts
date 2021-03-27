@@ -11,7 +11,8 @@ export const whitelist = [
     "544278439721435160", // |
     "542402631847378971", // Discord Bot Development Polska
     "383646671634169860", // RNG NAME
-    "630153337961971723", // Burning Knig
+    "630153337961971723", // Burning Knig,
+    "803002938179715132" // ABI
 ]
 
 export const colors = {
