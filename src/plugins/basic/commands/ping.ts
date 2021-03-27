@@ -1,22 +1,22 @@
-import { core } from "../../../index"
-import { Command, CommandInput } from "../../../structures/command"
+import { core } from "../../../index";
+import { Command, CommandInput } from "../../../structures/command";
 
 export = new Command({
     trigger: "ping",
-    output: ({message}: CommandInput) => {
+    output: ({ message }: CommandInput) => {
         return {
             fields: [
                 {
                     title: "Api",
                     text: `${Math.floor(core.ws.ping)}ms`,
-                    inline: true
+                    inline: true,
                 },
                 {
                     title: "Bot",
                     text: `${Date.now() - message.createdTimestamp}ms`,
-                    inline: true
-                }
-            ]
-        }
-    }
-})
+                    inline: true,
+                },
+            ],
+        };
+    },
+});

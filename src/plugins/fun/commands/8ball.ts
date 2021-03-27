@@ -1,5 +1,5 @@
-import { single } from "../../../utils/array"
-import { Command, CommandInput } from "../../../structures/command"
+import { single } from "../../../utils/array";
+import { Command, CommandInput } from "../../../structures/command";
 
 const outcomes = [
     "It's decidedly so",
@@ -17,19 +17,19 @@ const outcomes = [
     "My sources say no",
     "Outlook not so good",
     "Very doubtful",
-    "No"
-]
+    "No",
+];
 
 export = new Command({
     trigger: "8ball",
     usage: "<question>",
-    output: ({args = []}: CommandInput) => {
+    output: ({ args = [] }: CommandInput) => {
         if (!args) {
-            return false
+            return false;
         }
-        
+
         return {
-            message: `:8ball: ${single(outcomes) as string}`
-        }
-    }
-})
+            message: `:8ball: ${single(outcomes) as string}`,
+        };
+    },
+});

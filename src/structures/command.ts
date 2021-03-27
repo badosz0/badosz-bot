@@ -1,46 +1,45 @@
-import { Message, PermissionString } from "discord.js"
-import { Embed, EmbedOptions } from "./embed"
-import { core } from "../index"
+import { Message, PermissionString } from "discord.js";
+import { Embed, EmbedOptions } from "./embed";
+import { core } from "../index";
 
 export interface CommandData {
-    trigger: string
-    usage?: string
-    developer?: boolean
-    user_perms?: PermissionString[]
-    bot_perms?: PermissionString[]
-    output: ({message}: CommandInput) => EmbedOptions | Promise<EmbedOptions | boolean>| boolean
+    trigger: string;
+    usage?: string;
+    developer?: boolean;
+    user_perms?: PermissionString[];
+    bot_perms?: PermissionString[];
+    output: ({ message }: CommandInput) => EmbedOptions | Promise<EmbedOptions | boolean> | boolean;
 }
 
 export interface CommandInput {
-    message: Message
-    args?: string[]
+    message: Message;
+    args?: string[];
 }
 
 export class Command {
-    public data: CommandData
+    public data: CommandData;
 
     constructor(data: CommandData) {
-        this.data = data
+        this.data = data;
     }
 
     public async run(message: Message, args: string[] = []): Promise<void> {
-        const output = await this.data.output({message, args})
+        const output = await this.data.output({ message, args });
         if (!output) {
-            return this.show_usage(message)
+            return this.show_usage(message);
         }
 
         if (output === true) {
-            return
+            return;
         }
 
-        new Embed(message, output).send()
+        new Embed(message, output).send();
     }
 
     public show_usage(message: Message): void {
         new Embed(message, {
             message: `**Valid Usage:**\n${core.prefix}${this.data.trigger} ${this.data.usage}`,
-            color: "#f44262"
-        }).send()
+            color: "#f44262",
+        }).send();
     }
-    
 }

@@ -1,7 +1,7 @@
-import { Command } from "../../structures/command"
-import { get_api } from "../../utils/api"
+import { Command } from "../../structures/command";
+import { get_api } from "../../utils/api";
 
-const commands: Command[] = []
+const commands: Command[] = [];
 const images = [
     "ant",
     "bird",
@@ -23,25 +23,24 @@ const images = [
     "koala",
     "gecko",
     "tickle",
-]
+];
 
 for (const image of images) {
     commands.push(
-        new Command ({
-            trigger : image,
-            output : async () => {
+        new Command({
+            trigger: image,
+            output: async () => {
                 return {
                     attachment: await (await get_api(image)).buffer(),
-                    footer: "api.badosz.com"
-                }
-            }
+                    footer: "api.badosz.com",
+                };
+            },
         })
-    )
+    );
 }
-
 
 export const data = {
     name: "Images",
     id: "images",
     commands: commands,
-}
+};

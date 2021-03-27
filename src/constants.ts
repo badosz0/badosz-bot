@@ -12,16 +12,16 @@ export const whitelist = [
     "542402631847378971", // Discord Bot Development Polska
     "383646671634169860", // RNG NAME
     "630153337961971723", // Burning Knig,
-    "803002938179715132" // ABI
-]
+    "803002938179715132", // ABI
+];
 
 export const colors = {
-    error: "#f44262"
-}
+    error: "#f44262",
+};
 
 export const emojis = {
     yes: "<:markYes:568830907666923525>",
-    no:  "<:markNo:568830953938616330>"
-}
+    no: "<:markNo:568830953938616330>",
+};
 
-export const developer = "214858075650260992"
+export const developer = "214858075650260992";

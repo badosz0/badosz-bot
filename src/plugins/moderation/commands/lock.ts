@@ -1,33 +1,33 @@
-import { GuildChannel } from "discord.js"
-import { Command, CommandInput } from "../../../structures/command"
+import { GuildChannel } from "discord.js";
+import { Command, CommandInput } from "../../../structures/command";
 
-export = new Command ({
-    trigger : "lock",
+export = new Command({
+    trigger: "lock",
     user_perms: ["MANAGE_GUILD", "MANAGE_ROLES", "MANAGE_CHANNELS"],
     bot_perms: ["MANAGE_ROLES", "MANAGE_CHANNELS"],
     usage: "[reason]",
-    output: async ({message, args = []}: CommandInput) => {
-        const channel = message.guild?.channels.cache.get(message.channel.id) as GuildChannel
-        const reason = args.join(" ")
+    output: async ({ message, args = [] }: CommandInput) => {
+        const channel = message.guild?.channels.cache.get(message.channel.id) as GuildChannel;
+        const reason = args.join(" ");
 
         if (channel) {
-            await channel.overwritePermissions([{
-                id: message.guild?.id as string,
-                deny: [
-                    "SEND_MESSAGES",
-                    "ADD_REACTIONS"
+            await channel.overwritePermissions(
+                [
+                    {
+                        id: message.guild?.id as string,
+                        deny: ["SEND_MESSAGES", "ADD_REACTIONS"],
+                    },
                 ],
+                `${reason ? `**Reason:** ${reason}` : ""}`
+            );
 
-            }], `${reason ? `**Reason:** ${reason}` : ""}`)
-
-            message.delete()
+            message.delete();
 
             return {
-                message: `:lock:\`Channel locked.\`\n${reason ? `**Reason:** ${reason}` : ""}`
-            }
+                message: `:lock:\`Channel locked.\`\n${reason ? `**Reason:** ${reason}` : ""}`,
+            };
         } else {
-            return false
+            return false;
         }
-        
-    }
-})
+    },
+});
