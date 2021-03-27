@@ -32,7 +32,7 @@ for (const image of images) {
             output: async () => {
                 return {
                     attachment: await (await get_api(image)).buffer(),
-                    footer: "api.badosz.com",
+                    footer: "obrazium.com",
                 };
             },
         })
