@@ -4,6 +4,8 @@ const events: { [event_name: string]: string } = {
     ready: "ready",
     message: "message",
     messageDelete: "message_delete",
+    raw: "raw",
+    messageReactionAdd: "message_reaction_add",
 };
 
 export function assign_events(bot: Bot): void {
